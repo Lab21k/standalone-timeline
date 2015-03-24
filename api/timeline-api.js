@@ -23,7 +23,7 @@
  *        Timeline_parameters='bundle=true'; // you must set bundle to true if you are using
  *                                           // timeline_libraries.zip since only the
  *                                           // bundled libraries are included
- *      
+ *
  * eg your html page would include
  *
  *   <script>
@@ -62,15 +62,15 @@
             }
         }
     };
-    
+
     var loadMe = function() {
         if ("Timeline" in window) {
             return;
         }
-        
+
         window.Timeline = new Object();
         window.Timeline.DateTime = window.SimileAjax.DateTime; // for backward compatibility
-    
+
         var bundle = false;
         var javascriptFiles = [
             "timeline.js",
@@ -93,14 +93,14 @@
             "ethers.css",
             "events.css"
         ];
-        
+
         var localizedJavascriptFiles = [
             "timeline.js",
             "labellers.js"
         ];
         var localizedCssFiles = [
         ];
-        
+
         // ISO-639 language codes, ISO-3166 country codes (2 characters)
         var supportedLocales = [
             "cs",       // Czech
@@ -116,12 +116,12 @@
             "vi",       // Vietnamese
             "zh"        // Chinese
         ];
-        
+
         try {
             var desiredLocales = [ "en" ],
                 defaultServerLocale = "en",
                 forceLocale = null;
-            
+
             var parseURLParameters = function(parameters) {
                 var params = parameters.split("&");
                 for (var p = 0; p < params.length; p++) {
@@ -138,7 +138,7 @@
                     }
                 }
             };
-            
+
             (function() {
                 if (typeof Timeline_urlPrefix == "string") {
                     Timeline.urlPrefix = Timeline_urlPrefix;
@@ -165,14 +165,14 @@
                     throw new Error("Failed to derive URL prefix for Timeline API code files");
                 }
             })();
-            
+
             var includeJavascriptFiles = function(urlPrefix, filenames) {
                 SimileAjax.includeJavascriptFiles(document, urlPrefix, filenames);
             }
             var includeCssFiles = function(urlPrefix, filenames) {
                 SimileAjax.includeCssFiles(document, urlPrefix, filenames);
             }
-            
+
             /*
              *  Include non-localized files
              */
@@ -183,13 +183,13 @@
                 includeJavascriptFiles(Timeline.urlPrefix + "scripts/", javascriptFiles);
                 includeCssFiles(Timeline.urlPrefix + "styles/", cssFiles);
             }
-            
+
             /*
              *  Include localized files
              */
             var loadLocale = [];
             loadLocale[defaultServerLocale] = true;
-            
+
             var tryExactLocale = function(locale) {
                 for (var l = 0; l < supportedLocales.length; l++) {
                     if (locale == supportedLocales[l]) {
@@ -203,19 +203,19 @@
                 if (tryExactLocale(locale)) {
                     return locale;
                 }
-                
+
                 var dash = locale.indexOf("-");
                 if (dash > 0 && tryExactLocale(locale.substr(0, dash))) {
                     return locale.substr(0, dash);
                 }
-                
+
                 return null;
             }
-            
+
             for (var l = 0; l < desiredLocales.length; l++) {
                 tryLocale(desiredLocales[l]);
             }
-            
+
             var defaultClientLocale = defaultServerLocale;
             var defaultClientLocales = ("language" in navigator ? navigator.language : navigator.browserLanguage).split(";");
             for (var l = 0; l < defaultClientLocales.length; l++) {
@@ -225,7 +225,7 @@
                     break;
                 }
             }
-            
+
             for (var l = 0; l < supportedLocales.length; l++) {
                 var locale = supportedLocales[l];
                 if (loadLocale[locale]) {
@@ -233,31 +233,33 @@
                     includeCssFiles(Timeline.urlPrefix + "styles/l10n/" + locale + "/", localizedCssFiles);
                 }
             }
-            
+
             if (forceLocale == null) {
               Timeline.serverLocale = defaultServerLocale;
               Timeline.clientLocale = defaultClientLocale;
             } else {
               Timeline.serverLocale = forceLocale;
               Timeline.clientLocale = forceLocale;
-            }            	
+            }
         } catch (e) {
             alert(e);
         }
     };
-    
+
     /*
      *  Load SimileAjax if it's not already loaded
      */
     if (typeof SimileAjax == "undefined") {
         window.SimileAjax_onLoad = loadMe;
-        
+
         var url = useLocalResources ?
             "http://127.0.0.1:9999/ajax/api/simile-ajax-api.js?bundle=false" :
             "http://localhost/simile-ajax-api.js";
+
         if (typeof Timeline_ajax_url == "string") {
            url = Timeline_ajax_url;
         }
+
         var createScriptElement = function() {
             var script = document.createElement("script");
             script.type = "text/javascript";
@@ -265,6 +267,7 @@
             script.src = url;
             document.getElementsByTagName("head")[0].appendChild(script);
         }
+
         if (document.body == null) {
             try {
                 document.write("<script src='" + url + "' type='text/javascript'></script>");
@@ -274,6 +277,7 @@
         } else {
             createScriptElement();
         }
+
     } else {
         loadMe();
     }

@@ -2,14 +2,13 @@
 <head>
     <title>SIMILE | Timeline</title>
     <link rel='stylesheet' href='styles.css' type='text/css' />
-    <link rel="alternate" type="application/rdf+xml" href="doap.rdf" />
     <script src="simile-ajax-api.js"></script>
     <script src="api/timeline-api.js" type="text/javascript"></script>
     <script>
         var tl;
         function onLoad() {
             var eventSource = new Timeline.DefaultEventSource();
-            
+
             var zones = [
                 {   start:    "Fri Nov 22 1963 00:00:00 GMT-0600",
                     end:      "Mon Nov 25 1963 00:00:00 GMT-0600",
@@ -58,14 +57,11 @@
                     multiple: 15
                 }
             ];
-            
-			
-			
+
             var theme = Timeline.ClassicTheme.create();
-			Timeline.ThemeName = 'dark-theme'
-			
+            Timeline.ThemeName = 'dark-theme'
             theme.event.bubble.width = 250;
-            
+
             var date = "Fri Nov 22 1963 13:00:00 GMT-0600"
             var bandInfos = [
                 Timeline.createHotZoneBandInfo({
@@ -92,7 +88,7 @@
             ];
             bandInfos[1].syncWith = 0;
             bandInfos[1].highlight = true;
-            
+
             for (var i = 0; i < bandInfos.length; i++) {
                 bandInfos[i].decorators = [
                     new Timeline.SpanHighlightDecorator({
@@ -103,14 +99,14 @@
                         startLabel: "shot",
                         endLabel:   "t.o.d.",
                        // theme:      theme,
-						cssClass: 't-highlight1'
+                        cssClass: 't-highlight1'
                     }),
                     new Timeline.PointHighlightDecorator({
                         date:       "Fri Nov 22 1963 14:38:00 GMT-0600",
                         color:      "#FFC080",
                         opacity:    50,
                         //theme:      theme,
-						cssClass: 'p-highlight1'
+                        cssClass: 'p-highlight1'
                     }),
                     new Timeline.PointHighlightDecorator({
                         date:       "Sun Nov 24 1963 13:00:00 GMT-0600",
@@ -120,11 +116,11 @@
                     })
                 ];
             }
-            
+
             tl = Timeline.create(document.getElementById("tl"), bandInfos, Timeline.HORIZONTAL);
             tl.loadXML("jfk.xml", function(xml, url) { eventSource.loadXML(xml, url); });
         }
-        
+
         var resizeTimerID = null;
         function onResize() {
             if (resizeTimerID == null) {
@@ -134,60 +130,53 @@
                 }, 500);
             }
         }
-		
-		
-		function themeSwitch(){
-			var timeline = document.getElementById('tl');		
-			timeline.className = (timeline.className.indexOf('dark-theme') != -1) ? timeline.className.replace('dark-theme', '') : timeline.className += ' dark-theme';
-			
-		}
+
+        function themeSwitch(){
+            var timeline = document.getElementById('tl');		
+            timeline.className = (timeline.className.indexOf('dark-theme') != -1) ? timeline.className.replace('dark-theme', '') : timeline.className += ' dark-theme';
+        }
     </script>
-	<style type="text/css">
-		
-		#switch_theme{margin-left:2em; cursor:pointer; background:#eee; padding:4px 6px; width:120px; text-align:center; font-weight:bold; border:1px solid #999;}
-		
-		.t-highlight1{background-color:#ccf;}
-		.p-highlight1{background-color:#fcc;}
-		
-		.timeline-highlight-label-start .label_t-highlight1{color:#f00;}
-		.timeline-highlight-label-end .label_t-highlight1{color:#aaf;}
-		
-		.timeline-band-events .important{color:#f00;}		
-		.timeline-band-events .small-important{background:#c00;}
-		
-		
-		/*---------------------------------*/
-		
-		.dark-theme {color:#eee;}
-		.dark-theme .timeline-band-0 .timeline-ether-bg{background-color:#333}
-		.dark-theme .timeline-band-1 .timeline-ether-bg{background-color:#111}
-		.dark-theme .timeline-band-2 .timeline-ether-bg{background-color:#222}
-		.dark-theme .timeline-band-3 .timeline-ether-bg{background-color:#444}
-		
-		
-		.dark-theme .t-highlight1{background-color:#003;}
-		.dark-theme .p-highlight1{background-color:#300;}
-		
-		.dark-theme .timeline-highlight-label-start .label_t-highlight1{color:#f00;}
-		.dark-theme .timeline-highlight-label-end .label_t-highlight1{color:#115;}
-		
-		.dark-theme .timeline-band-events .important{color:#c00;}		
-		.dark-theme .timeline-band-events .small-important{background:#c00;}
-		
-		.dark-theme .timeline-date-label-em{color:#fff;}
-		.dark-theme .timeline-ether-lines{border-color:#555; border-style:solid;}
-		.dark-theme .timeline-ether-highlight{background:#555;}
-		
-		.dark-theme .timeline-event-tape,
-		.dark-theme .timeline-small-event-tape{background:#f60;}
-		.dark-theme .timeline-ether-weekends{background:#111;}
-	</style>
+    <style type="text/css">
+        #switch_theme{margin-left:2em; cursor:pointer; background:#eee; padding:4px 6px; width:120px; text-align:center; font-weight:bold; border:1px solid #999;}
+        .t-highlight1{background-color:#ccf;}
+        .p-highlight1{background-color:#fcc;}
+
+        .timeline-highlight-label-start .label_t-highlight1{color:#f00;}
+        .timeline-highlight-label-end .label_t-highlight1{color:#aaf;}
+
+        .timeline-band-events .important{color:#f00;}
+        .timeline-band-events .small-important{background:#c00;}
+
+        /*---------------------------------*/
+        .dark-theme {color:#eee;}
+        .dark-theme .timeline-band-0 .timeline-ether-bg{background-color:#333}
+        .dark-theme .timeline-band-1 .timeline-ether-bg{background-color:#111}
+        .dark-theme .timeline-band-2 .timeline-ether-bg{background-color:#222}
+        .dark-theme .timeline-band-3 .timeline-ether-bg{background-color:#444}
+
+        .dark-theme .t-highlight1{background-color:#003;}
+        .dark-theme .p-highlight1{background-color:#300;}
+
+        .dark-theme .timeline-highlight-label-start .label_t-highlight1{color:#f00;}
+        .dark-theme .timeline-highlight-label-end .label_t-highlight1{color:#115;}
+
+        .dark-theme .timeline-band-events .important{color:#c00;}
+        .dark-theme .timeline-band-events .small-important{background:#c00;}
+
+        .dark-theme .timeline-date-label-em{color:#fff;}
+        .dark-theme .timeline-ether-lines{border-color:#555; border-style:solid;}
+        .dark-theme .timeline-ether-highlight{background:#555;}
+
+        .dark-theme .timeline-event-tape,
+        .dark-theme .timeline-small-event-tape{background:#f60;}
+        .dark-theme .timeline-ether-weekends{background:#111;}
+    </style>
 </head>
 <body onload="onLoad();" onresize="onResize();">
 <!--#include virtual="sidebar.html" -->
 <ul id="path">
-  <li><a href="http://code.google.com/p/simile-widgets/" title="Home">SIMILE</a></li>
-  <li><span>Timeline</span></li>
+<li><a href="http://code.google.com/p/simile-widgets/" title="Home">SIMILE</a></li>
+<li><span>Timeline</span></li>
 </ul>
 
 <div id="body">
@@ -199,10 +188,10 @@
         for details on the event. The arrow keys can also be used to navigate the timeline.
     </p>
 
-	<div id="switch_theme" onclick="themeSwitch();">Switch theme</div>
+    <div id="switch_theme" onclick="themeSwitch();">Switch theme</div>
     <div id="tl" class="timeline-default dark-theme" style="height: 350px; margin: 2em;">
     </div>
-    
+
     <p>Just like Google Maps, Timeline can be used with zero software installation,
         server-side or client-side. And like Google Maps, you can populate Timeline
         with data by pointing it to an XML file (here is the 
@@ -210,7 +199,7 @@
         But Timeline is not limited to only that means of loading data; for instance,
         we have just added <a href="examples/cubism/cubism.html">JSON support</a>.
     </p>
-    
+
     <h2>Live Examples</h2>
     <ul>
         <li><a href="examples/religions/religions.html">Religion Timelines</a>:
@@ -218,15 +207,15 @@
             2000 years of Jewish and Christianity history, all
             mashed up, scrolling side-by-side.
         </li>
-        
-        <!-- 
+
+        <!--
         Dinos are no longer working...
         <li><a href="examples/dinosaurs/dinosaurs2.html">Dinosaurs</a>:
             recommended to be viewed on a huge monitor, showing Timeline
             working on geological scale events.
         </li>
         -->
-        
+
         <li>Additional <a href="examples/">examples</a></li>
     </ul>
 
@@ -237,36 +226,36 @@
             time lines and maps without ever touching a database or even setting up a web server.
         </li>
     </ul>
-        
+
     <h2>Documentation</h2>
     <ul>
         <li>Documentation: read and contribute to Timeline's
-          <a href="http://code.google.com/p/simile-widgets/wiki/Timeline">wiki</a>
+        <a href="http://code.google.com/p/simile-widgets/wiki/Timeline">wiki</a>
         </li>
-        
+
         <li>Older documentation from version 1 is available
-          <a href="docs/">here</a> and <a href="http://simile.mit.edu/wiki/Timeline">here</a>
-         </li>
+        <a href="docs/">here</a> and <a href="http://simile.mit.edu/wiki/Timeline">here</a>
+        </li>
         <li><a href="http://code.google.com/p/simile-widgets/source/browse/">Source Code</a>
-          on SVN repository
+        on SVN repository
         </li>
     </ul>
-    
+
     <h2>Mailing list / Feedback / Contribute</h2>
     <ul>
-        <li>Send questions/comments/ideas/discussions/etc. to our 
+        <li>Send questions/comments/ideas/discussions/etc. to our
             <a href="http://groups.google.com/group/simile-widgets/">Google groups mailing list</a>
         </li>
-        <li>View and add enhancement ideas / bugs / issues in our 
-          <a href="http://code.google.com/p/simile-widgets/issues">issue tracker</a>
+        <li>View and add enhancement ideas / bugs / issues in our
+        <a href="http://code.google.com/p/simile-widgets/issues">issue tracker</a>
         </li>
     </ul>
-    
+
     <h2>Licensing</h2>
     <p>Timeline is open source software and is licensed under the 
         <a href="http://simile.mit.edu/license.html">BSD license</a>.</p>
     </p>
-    
+
     <h2>Credits</h2>
     <p>This software is sponsored by <a href="http://mellon.org/">The Andrew W. Mellon Foundation</a>
         and is maintained by the SIMILE project, in particular:
