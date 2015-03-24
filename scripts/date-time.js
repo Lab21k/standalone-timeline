@@ -30,7 +30,7 @@ SimileAjax.DateTime.gregorianUnitLengths = [];
     (function() {
         var d = SimileAjax.DateTime;
         var a = d.gregorianUnitLengths;
-        
+
         a[d.MILLISECOND] = 1;
         a[d.SECOND]      = 1000;
         a[d.MINUTE]      = a[d.SECOND] * 60;

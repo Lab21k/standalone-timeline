@@ -8,7 +8,7 @@
  *==================================================
  */
 
-if (typeof SimileAjax == "undefined") {
+if (typeof SimileAjax === "undefined") {
     var SimileAjax = {
         loaded:                 false,
         loadingScriptsCount:    0,
@@ -31,7 +31,7 @@ if (typeof SimileAjax == "undefined") {
         var heads = doc.documentElement.getElementsByTagName("head");
         for (var h = 0; h < heads.length; h++) {
             var node = heads[h].firstChild;
-            while (node != null) {
+            while (node !== null) {
                 if (node.nodeType == 1 && node.tagName.toLowerCase() == "script") {
                     var url = node.src;
                     var i = url.indexOf(substring);
@@ -80,6 +80,7 @@ if (typeof SimileAjax == "undefined") {
         SimileAjax.loadingScriptsCount += filenames.length;
         SimileAjax.includeJavascriptFile(doc, SimileAjax.urlPrefix + "scripts/signal.js?" + filenames.length);
     };
+
     SimileAjax.includeCssFile = function(doc, url) {
         if (doc.body == null) {
             try {
@@ -166,29 +167,7 @@ if (typeof SimileAjax == "undefined") {
     };
 
     (function() {
-        var javascriptFiles = [
-            //"jquery-1.2.6.min.js",
-            "platform.js",
-            "debug.js",
-            "xmlhttp.js",
-            "json.js",
-            "dom.js",
-            "graphics.js",
-            "date-time.js",
-            "string.js",
-            "html.js",
-            "data-structure.js",
-            "units.js",
-            "ajax.js",
-            "history.js",
-            "window-manager.js"
-        ];
-
-        var cssFiles = [
-            "graphics.css"
-        ];
-
-        if (typeof SimileAjax_urlPrefix == "string") {
+        if (typeof SimileAjax_urlPrefix === String) {
             SimileAjax.urlPrefix = SimileAjax_urlPrefix;
         } else {
 
@@ -201,15 +180,7 @@ if (typeof SimileAjax == "undefined") {
             SimileAjax.urlPrefix = url.substr(0, url.indexOf("simile-ajax-api.js"));
         }
 
-        SimileAjax.parseURLParameters(url, SimileAjax.params, { bundle: Boolean });
-
-        if (SimileAjax.params.bundle) {
-            SimileAjax.includeJavascriptFiles(document, SimileAjax.urlPrefix, [ "simile-ajax-bundle.js" ]);
-        } else {
-            SimileAjax.includeJavascriptFiles(document, SimileAjax.urlPrefix + "scripts/", javascriptFiles);
-        }
-
-        SimileAjax.includeCssFiles(document, SimileAjax.urlPrefix + "styles/", cssFiles);
         SimileAjax.loaded = true;
     })();
+
 }
