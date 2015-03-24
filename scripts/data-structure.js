@@ -7,7 +7,7 @@
 SimileAjax.Set = function(a) {
     this._hash = {};
     this._count = 0;
-    
+
     if (a instanceof Array) {
         for (var i = 0; i < a.length; i++) {
             this.add(a[i]);
@@ -356,7 +356,7 @@ SimileAjax.EventIndex._Iterator.prototype = {
         if (this._hasNext) {
             var next = this._next;
             this._findNext();
-            
+
             return next;
         } else {
             return null;
@@ -368,11 +368,11 @@ SimileAjax.EventIndex._Iterator.prototype = {
             var evt = this._events.elementAt(this._currentIndex);
             if (unit.compare(evt.getStart(), this._endDate) < 0 &&
                 unit.compare(evt.getEnd(), this._startDate) > 0) {
-                
                 this._next = evt;
                 this._hasNext = true;
                 return;
             }
+
         }
         this._next = null;
         this._hasNext = false;
@@ -384,18 +384,18 @@ SimileAjax.EventIndex._ReverseIterator = function(events, startDate, endDate, un
     this._startDate = startDate;
     this._endDate = endDate;
     this._unit = unit;
-    
+
     this._minIndex = events.find(function(evt) {
         return unit.compare(evt.getStart(), startDate);
     });
     if (this._minIndex - 1 >= 0) {
         this._minIndex = this._events.elementAt(this._minIndex - 1)._earliestOverlapIndex;
     }
-    
+
     this._maxIndex = events.find(function(evt) {
         return unit.compare(evt.getStart(), endDate);
     });
-    
+
     this._currentIndex = this._maxIndex;
     this._hasNext = false;
     this._next = null;
@@ -408,7 +408,7 @@ SimileAjax.EventIndex._ReverseIterator.prototype = {
         if (this._hasNext) {
             var next = this._next;
             this._findNext();
-            
+
             return next;
         } else {
             return null;
@@ -420,7 +420,7 @@ SimileAjax.EventIndex._ReverseIterator.prototype = {
             var evt = this._events.elementAt(this._currentIndex);
             if (unit.compare(evt.getStart(), this._endDate) < 0 &&
                 unit.compare(evt.getEnd(), this._startDate) > 0) {
-                
+
                 this._next = evt;
                 this._hasNext = true;
                 return;
