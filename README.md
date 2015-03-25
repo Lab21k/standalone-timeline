@@ -53,10 +53,10 @@ npm update
 ```
 
 The run the Grunt tasks:
-```
+```shell
 # To build `timeline.min.js`, `timeline.min.css` and image files in the `/dist` directory
 grunt build
 
 # To build files and watch for changes to autoreload
 grunt
-
+```
