@@ -36,3 +36,27 @@ look for image files, you can do this by creating a `<script>` tag in your
 
 Note that these are the default paths where standalone timeline will search for
 the image files.
+
+### Contributing to the project:
+
+#### Building
+
+Developers can easily build standalone-timeline using NPM and Grunt
+
+
+```shell
+# First install or update your local project's npm tools:
+npm install
+
+# Or update
+npm update
+```
+
+The run the Grunt tasks:
+```
+# To build `timeline.min.js`, `timeline.min.css` and image files in the `/dist` directory
+grunt build
+
+# To build files and watch for changes to autoreload
+grunt
+
