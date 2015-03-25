@@ -37,6 +37,27 @@ look for image files, you can do this by creating a `<script>` tag in your
 Note that these are the default paths where standalone timeline will search for
 the image files.
 
+You will also need to include translations:
+
+```html
+<script src="../src/api/scripts/l10n/en/timeline.js"></script>
+<script src="../src/api/scripts/l10n/en/labellers.js"></script>
+```
+
+Where <en> can be one of those available translations:
+* cs
+* de
+* en
+* es
+* fr
+* it
+* nl
+* ru
+* se
+* tr
+* vi
+* zh
+
 ### Contributing to the project:
 
 #### Building
