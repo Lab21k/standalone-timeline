@@ -17,4 +17,4 @@
 
     Timeline.serverLocale = defaultServerLocale;
     Timeline.clientLocale = defaultClientLocale;
-}());
+})();
