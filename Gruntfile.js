@@ -16,6 +16,7 @@ module.exports = function(grunt) {
             },
             css: {
                 files: [
+                    'api/styles/*.css',
                     'styles/*.css'
                 ],
                 tasks: ['cssmin'],
@@ -27,6 +28,8 @@ module.exports = function(grunt) {
                 files: [
                     'scripts/*.js',
                     'styles/*.css'
+                    'api/styles/*.css',
+                    'index.html'
                 ]
             }
         },
