@@ -71,13 +71,24 @@ module.exports = function(grunt) {
                 dest: 'dist/timeline.min.js',
             },
         },
+        uglify: {
+            dist: {
+                files: {
+                    'dist/timeline.min.js': ['dist/timeline.min.js']
+                }
+            }
+        }
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
-    grunt.registerTask('build', ['concat']);
+    grunt.registerTask('build', [
+        'concat',
+        'uglify'
+    ]);
 
     grunt.registerTask('default', [
         'connect:server',
