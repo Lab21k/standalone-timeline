@@ -37,7 +37,7 @@ div.simileAjax-bubble-border-left {
     height:     100%;
 }
 div.simileAjax-bubble-border-left-pngTranslucent {
-    background: url(../images/bubble-left.png) top right repeat-y;
+    background: url(src/images/bubble-left.png) top right repeat-y;
 }
 
 div.simileAjax-bubble-border-right {
@@ -48,7 +48,7 @@ div.simileAjax-bubble-border-right {
     height:     100%;
 }
 .simileAjax-bubble-border-right-pngTranslucent {
-    background: url(../images/bubble-right.png) top left repeat-y;
+    background: url(src/images/bubble-right.png) top left repeat-y;
 }
 
 div.simileAjax-bubble-border-top {
@@ -59,7 +59,7 @@ div.simileAjax-bubble-border-top {
     height:     50px;
 }
 .simileAjax-bubble-border-top-pngTranslucent {
-    background: url(../images/bubble-top.png) bottom left repeat-x;
+    background: url(src/images/bubble-top.png) bottom left repeat-x;
 }
 
 div.simileAjax-bubble-border-bottom {
@@ -70,7 +70,7 @@ div.simileAjax-bubble-border-bottom {
     height:     50px;
 }
 .simileAjax-bubble-border-bottom-pngTranslucent {
-    background: url(../images/bubble-bottom.png) top left repeat-x;
+    background: url(src/images/bubble-bottom.png) top left repeat-x;
 }
 
 div.simileAjax-bubble-border-top-left {
@@ -81,7 +81,7 @@ div.simileAjax-bubble-border-top-left {
     height:     50px;
 }
 .simileAjax-bubble-border-top-left-pngTranslucent {
-    background: url(../images/bubble-top-left.png) bottom right no-repeat;
+    background: url(src/images/bubble-top-left.png) bottom right no-repeat;
 }
 
 div.simileAjax-bubble-border-top-right {
@@ -92,7 +92,7 @@ div.simileAjax-bubble-border-top-right {
     height:     50px;
 }
 .simileAjax-bubble-border-top-right-pngTranslucent {
-    background: url(../images/bubble-top-right.png) bottom left no-repeat;
+    background: url(src/images/bubble-top-right.png) bottom left no-repeat;
 }
 
 div.simileAjax-bubble-border-bottom-left {
@@ -103,7 +103,7 @@ div.simileAjax-bubble-border-bottom-left {
     height:     50px;
 }
 .simileAjax-bubble-border-bottom-left-pngTranslucent {
-    background: url(../images/bubble-bottom-left.png) top right no-repeat;
+    background: url(src/images/bubble-bottom-left.png) top right no-repeat;
 }
 
 div.simileAjax-bubble-border-bottom-right {
@@ -114,7 +114,7 @@ div.simileAjax-bubble-border-bottom-right {
     height:     50px;
 }
 .simileAjax-bubble-border-bottom-right-pngTranslucent {
-    background: url(../images/bubble-bottom-right.png) top left no-repeat;
+    background: url(src/images/bubble-bottom-right.png) top left no-repeat;
 }
 
 div.simileAjax-bubble-arrow-point-left {
@@ -124,7 +124,7 @@ div.simileAjax-bubble-arrow-point-left {
     height:     49px;
 }
 .simileAjax-bubble-arrow-point-left-pngTranslucent {
-    background: url(../images/bubble-arrow-point-left.png) center right no-repeat;
+    background: url(src/images/bubble-arrow-point-left.png) center right no-repeat;
 }
 
 div.simileAjax-bubble-arrow-point-right {
@@ -134,7 +134,7 @@ div.simileAjax-bubble-arrow-point-right {
     height:     49px;
 }
 .simileAjax-bubble-arrow-point-right-pngTranslucent {
-    background: url(../images/bubble-arrow-point-right.png) center left no-repeat;
+    background: url(src/images/bubble-arrow-point-right.png) center left no-repeat;
 }
 
 div.simileAjax-bubble-arrow-point-up {
@@ -144,7 +144,7 @@ div.simileAjax-bubble-arrow-point-up {
     height:     100px;
 }
 .simileAjax-bubble-arrow-point-up-pngTranslucent {
-    background: url(../images/bubble-arrow-point-up.png) bottom center no-repeat;
+    background: url(src/images/bubble-arrow-point-up.png) bottom center no-repeat;
 }
 
 div.simileAjax-bubble-arrow-point-down {
@@ -154,7 +154,7 @@ div.simileAjax-bubble-arrow-point-down {
     height:     100px;
 }
 .simileAjax-bubble-arrow-point-down-pngTranslucent {
-    background: url(../images/bubble-arrow-point-down.png) bottom center no-repeat;
+    background: url(src/images/bubble-arrow-point-down.png) bottom center no-repeat;
 }
 
 
@@ -167,5 +167,5 @@ div.simileAjax-bubble-close {
     cursor:     pointer;
 }
 .simileAjax-bubble-close-pngTranslucent {
-    background: url(../images/close-button.png) no-repeat;
+    background: url(src/images/close-button.png) no-repeat;
 }
