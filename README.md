@@ -29,8 +29,8 @@ look for image files, you can do this by creating a `<script>` tag in your
 
 ```javascript
 <script>
-    var TimelineUrlPrefix = '/dist/src/api/';
-    var AjaxUrlPrefix = '/dist/src/';
+    var TimelineUrlPrefix = 'bower_components/standalone-timeline/dist/src/api/';
+    var AjaxUrlPrefix = 'bower_components/standalone-timeline/dist/src/';
 </script>
 ```
 
@@ -40,11 +40,11 @@ the image files.
 You will also need to include translations:
 
 ```html
-<script src="../src/api/scripts/l10n/en/timeline.js"></script>
-<script src="../src/api/scripts/l10n/en/labellers.js"></script>
+<script src="bower_components/standalone-timeline/src/api/scripts/l10n/en/timeline.js"></script>
+<script src="bower_components/standalone-timeline/src/api/scripts/l10n/en/labellers.js"></script>
 ```
 
-Where <en> can be one of those available translations:
+Where *en* can be one of those available translations:
 * cs
 * de
 * en
