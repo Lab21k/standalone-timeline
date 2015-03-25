@@ -13,28 +13,21 @@ module.exports = function(grunt) {
                     'api/*.js',
                 ],
                 tasks: ['concat'],
-                livereload: {
-                    options: {
-                        livereload: true
-                    },
-                    files: [
-                        'scripts/*.js'
-                    ]
-                }
             },
             css: {
                 files: [
                     'styles/*.css'
                 ],
                 tasks: ['cssmin'],
-                livereload: {
-                    options: {
-                        livereload: true
-                    },
-                    files: [
-                        'styles/*.css'
-                    ]
-                }
+            },
+            livereload: {
+                options: {
+                    livereload: true
+                },
+                files: [
+                    'scripts/*.js',
+                    'styles/*.css'
+                ]
             }
         },
         connect: {
