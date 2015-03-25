@@ -6,18 +6,18 @@ module.exports = function(grunt) {
             js: {
                 files: [
                     'Gruntfile.js',
-                    'index.html',
-                    'scripts/*.js',
-                    'api/scripts/**/*.js',
-                    'api/scripts/*.js',
-                    'api/*.js',
+                    'demo/index.html',
+                    'src/scripts/*.js',
+                    'src/api/scripts/**/*.js',
+                    'src/api/scripts/*.js',
+                    'src/api/*.js',
                 ],
                 tasks: ['concat'],
             },
             css: {
                 files: [
-                    'api/styles/*.css',
-                    'styles/*.css'
+                    'src/api/styles/*.css',
+                    'src/styles/*.css'
                 ],
                 tasks: ['cssmin'],
             },
@@ -26,10 +26,10 @@ module.exports = function(grunt) {
                     livereload: true
                 },
                 files: [
-                    'scripts/*.js',
-                    'styles/*.css'
-                    'api/styles/*.css',
-                    'index.html'
+                    'src/scripts/*.js',
+                    'src/styles/*.css',
+                    'src/api/styles/*.css',
+                    'demo/index.html'
                 ]
             }
         },
@@ -46,37 +46,37 @@ module.exports = function(grunt) {
             dist: {
                 src: [
                     // SIMILE-AJAX-API
-                    'simile-ajax-api.js',
-                    'scripts/platform.js',
-                    'scripts/debug.js',
-                    'scripts/xmlhttp.js',
-                    'scripts/json.js',
-                    'scripts/dom.js',
-                    'scripts/graphics.js',
-                    'scripts/date-time.js',
-                    'scripts/string.js',
-                    'scripts/html.js',
-                    'scripts/data-structure.js',
-                    'scripts/units.js',
-                    'scripts/ajax.js',
-                    'scripts/history.js',
-                    'scripts/window-manager.js',
+                    'src/simile-ajax-api.js',
+                    'src/scripts/platform.js',
+                    'src/scripts/debug.js',
+                    'src/scripts/xmlhttp.js',
+                    'src/scripts/json.js',
+                    'src/scripts/dom.js',
+                    'src/scripts/graphics.js',
+                    'src/scripts/date-time.js',
+                    'src/scripts/string.js',
+                    'src/scripts/html.js',
+                    'src/scripts/data-structure.js',
+                    'src/scripts/units.js',
+                    'src/scripts/ajax.js',
+                    'src/scripts/history.js',
+                    'src/scripts/window-manager.js',
                     // API
-                    'api/timeline-api.js',
-                    'api/scripts/timeline.js',
-                    'api/scripts/band.js',
-                    'api/scripts/themes.js',
-                    'api/scripts/ethers.js',
-                    'api/scripts/ether-painters.js',
-                    'api/scripts/event-utils.js',
-                    'api/scripts/labellers.js',
-                    'api/scripts/sources.js',
-                    'api/scripts/original-painter.js',
-                    'api/scripts/detailed-painter.js',
-                    'api/scripts/overview-painter.js',
-                    'api/scripts/compact-painter.js',
-                    'api/scripts/decorators.js',
-                    'api/scripts/units.js'
+                    'src/api/timeline-api.js',
+                    'src/api/scripts/timeline.js',
+                    'src/api/scripts/band.js',
+                    'src/api/scripts/themes.js',
+                    'src/api/scripts/ethers.js',
+                    'src/api/scripts/ether-painters.js',
+                    'src/api/scripts/event-utils.js',
+                    'src/api/scripts/labellers.js',
+                    'src/api/scripts/sources.js',
+                    'src/api/scripts/original-painter.js',
+                    'src/api/scripts/detailed-painter.js',
+                    'src/api/scripts/overview-painter.js',
+                    'src/api/scripts/compact-painter.js',
+                    'src/api/scripts/decorators.js',
+                    'src/api/scripts/units.js'
                 ],
                 dest: 'dist/timeline.min.js',
             },
@@ -96,14 +96,29 @@ module.exports = function(grunt) {
             target: {
                 files: {
                     'dist/timeline.min.css': [
-                        'styles/graphics.css',
-                        'api/styles/timeline.css',
-                        'api/styles/ethers.css',
-                        'api/styles/events.css'
+                        'src/styles/graphics.css',
+                        'src/api/styles/timeline.css',
+                        'src/api/styles/ethers.css',
+                        'src/api/styles/events.css'
                     ]
                 }
             }
-        }
+        },
+        copy: {
+            dist: {
+                files: [
+                    // includes files within path
+                    {
+                        expand: true,
+                        src: [
+                            'src/images/*',
+                            'src/api/images/*'
+                        ],
+                        dest: 'dist/'
+                    }
+                ],
+            },
+        },
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -111,6 +126,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.registerTask('build', [
         'concat',

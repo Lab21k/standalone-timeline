@@ -10,7 +10,7 @@
         defaultServerLocale = 'en',
         forceLocale = null;
 
-    Timeline.urlPrefix = 'api/';
+    Timeline.urlPrefix = (typeof TimelineUrlPrefix !== 'undefined') ? TimelineUrlPrefix : '/dist/src/api/';
 
     var defaultClientLocale = defaultServerLocale;
     var defaultClientLocales = ('language' in navigator ? navigator.language : navigator.browserLanguage).split(';');

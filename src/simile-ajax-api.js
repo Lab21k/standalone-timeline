@@ -17,5 +17,5 @@ if (typeof SimileAjax === "undefined") {
     };
 
     SimileAjax.Platform = new Object();
-    SimileAjax.urlPrefix = '/';
+    SimileAjax.urlPrefix = (typeof AjaxUrlPrefix !== 'undefined') ? AjaxUrlPrefix : '/dist/src/';
 }
