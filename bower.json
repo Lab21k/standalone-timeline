@@ -1,0 +1,30 @@
+{
+  "name": "timeline-standalone",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Lab21k/timeline-sample-standalone",
+  "authors": [
+    "André Abadesso <andre@lab21k.com.br>",
+    "Felipe Morais <felipe@lab21k.com.br>"
+  ],
+  "description": "Standalone version of simile-timeline",
+  "main": [
+    "dist/timeline.min.js",
+    "dist/timeline.min.css"
+  ],
+  "keywords": [
+    "timeline",
+    "simile-timeline"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~1.11.2"
+  }
+}
