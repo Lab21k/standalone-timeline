@@ -3,24 +3,38 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         watch: {
-            files: [
-                'Gruntfile.js',
-                'index.html',
-                'scripts/*.js',
-                'api/scripts/**/*.js',
-                'api/scripts/*.js',
-                'api/*.js',
-                'styles/*.css'
-            ],
-            tasks: ['concat'],
-            livereload: {
-                options: {
-                    livereload: true
-                },
+            js: {
                 files: [
+                    'Gruntfile.js',
+                    'index.html',
                     'scripts/*.js',
+                    'api/scripts/**/*.js',
+                    'api/scripts/*.js',
+                    'api/*.js',
+                ],
+                tasks: ['concat'],
+                livereload: {
+                    options: {
+                        livereload: true
+                    },
+                    files: [
+                        'scripts/*.js'
+                    ]
+                }
+            },
+            css: {
+                files: [
                     'styles/*.css'
-                ]
+                ],
+                tasks: ['cssmin'],
+                livereload: {
+                    options: {
+                        livereload: true
+                    },
+                    files: [
+                        'styles/*.css'
+                    ]
+                }
             }
         },
         connect: {
@@ -77,6 +91,22 @@ module.exports = function(grunt) {
                     'dist/timeline.min.js': ['dist/timeline.min.js']
                 }
             }
+        },
+        cssmin: {
+            options: {
+                shorthandCompacting: false,
+                roundingPrecision: -1
+            },
+            target: {
+                files: {
+                    'dist/timeline.min.css': [
+                        'styles/graphics.css',
+                        'api/styles/timeline.css',
+                        'api/styles/ethers.css',
+                        'api/styles/events.css'
+                    ]
+                }
+            }
         }
     });
 
@@ -84,10 +114,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
 
     grunt.registerTask('build', [
         'concat',
-        'uglify'
+        'uglify',
+        'cssmin'
     ]);
 
     grunt.registerTask('default', [
