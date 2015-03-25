@@ -1,6 +1,6 @@
 # Standalone Timeline
 
-Stripped down Simile-Timeline without the ajax api and with all the original scripts
+Stripped down [Simile-Timeline](http://www.simile-widgets.org/timeline/) without the ajax api and with all the original scripts.
 
 ### Bower:
 
