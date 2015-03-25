@@ -5,7 +5,11 @@ module.exports = function(grunt) {
         watch: {
             files: [
                 'Gruntfile.js',
+                'index.html',
                 'scripts/*.js',
+                'api/scripts/**/*.js',
+                'api/scripts/*.js',
+                'api/*.js',
                 'styles/*.css'
             ],
             livereload: {
@@ -31,6 +35,10 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+
+    grunt.registerTask('build', ['concat']);
+
     grunt.registerTask('default', [
         'connect:server',
         'watch'

@@ -12,7 +12,6 @@
 SimileAjax.WindowManager = {
     _initialized:       false,
     _listeners:         [],
-    
     _draggedElement:                null,
     _draggedElementCallback:        null,
     _dropTargetHighlightElement:    null,
