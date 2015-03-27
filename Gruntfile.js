@@ -115,6 +115,14 @@ module.exports = function(grunt) {
                             'src/api/images/*'
                         ],
                         dest: 'dist/'
+                    },
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: [
+                            'src/api/images/*'
+                        ],
+                        dest: 'dist/src/images/'
                     }
                 ],
             },
@@ -131,7 +139,8 @@ module.exports = function(grunt) {
     grunt.registerTask('build', [
         'concat',
         'uglify',
-        'cssmin'
+        'cssmin',
+        'copy'
     ]);
 
     grunt.registerTask('default', [
