@@ -411,7 +411,7 @@
         var trackCount = Math.ceil(Math.max(totalIconHeight, totalLabelHeight) / metrics.trackHeight);
         var rightIconEdge = firstIconData.width + (events.length - 1) * horizontalIncrement;
 
-        trackCount.each(function() {
+        trackCount.forEach(function() {
             newTracks.push({
                 start: leftIconEdge,
                 end: rightIconEdge
@@ -517,7 +517,7 @@
             };
             SimileAjax.DOM.registerEvent(moreMessageLabelElmtData.elmt, "mousedown", moreMessageClickHandler);
 
-            moreEvents.each(function(moreEvent) {
+            moreEvents.forEach(function(moreEvent) {
                 this._eventIdToElmt[moreEvent.getID()] = moreMessageLabelElmtData.elmt;
             });
         }
