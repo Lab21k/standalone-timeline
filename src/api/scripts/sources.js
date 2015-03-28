@@ -1,8 +1,8 @@
 (function() {
     'use strict';
-    /*==================================================
+    /*==================================
     *  Default Event Source
-    *==================================================
+    *==================================
     */
 
 
@@ -35,17 +35,22 @@
 
         var node = xml.documentElement.firstChild;
         var added = false;
-        while (node !== null) {
+        while (node !== null && node !== undefined) {
             if (node.nodeType === 1) {
                 var description = "";
-                if (node.firstChild !== null && node.firstChild.nodeType === 3) {
+                if ((node.firstChild !== null && node.firstChild !== undefined) &&
+                    node.firstChild.nodeType === 3) {
                     description = node.firstChild.nodeValue;
                 }
                 // instant event: default is true. Or use values from isDuration or durationEvent
-                var instant = (node.getAttribute("isDuration") === null &&
-                        node.getAttribute("durationEvent") === null) ||
-                    node.getAttribute("isDuration") === "false" ||
-                    node.getAttribute("durationEvent") === "false";
+                var instant =
+                        ( (node.getAttribute("isDuration") === null ||
+                            node.getAttribute("isDuration") === undefined) &&
+                            (node.getAttribute("durationEvent") === null &&
+                            node.getAttribute("durationEvent") === undefined))
+                        || (
+                            node.getAttribute("isDuration") == "false" ||
+                            node.getAttribute("durationEvent") == "false");
 
                 var evt = new Timeline.DefaultEventSource.Event({
                     id: node.getAttribute("id"),
@@ -92,7 +97,9 @@
     Timeline.DefaultEventSource.prototype.loadJSON = function(data, url) {
         var base = this._getBaseURL(url);
         var added = false;
+
         if (data && data.events) {
+
             var wikiURL = ("wikiURL" in data) ? data.wikiURL : null;
             var wikiSection = ("wikiSection" in data) ? data.wikiSection : null;
 
@@ -104,7 +111,7 @@
                 // Fixing issue 33:
                 // instant event: default (for JSON only) is false. Or use values from isDuration or durationEvent
                 // isDuration was negated (see issue 33, so keep that interpretation
-                var instant = event.isDuration || (event.durationEvent !== null && !event.durationEvent);
+                var instant = event.isDuration || (event.durationEvent != null && !event.durationEvent);
 
                 var evt = new Timeline.DefaultEventSource.Event({
                     id: ("id" in event) ? event.id : undefined,
@@ -128,6 +135,7 @@
                     eventID: event.eventID,
                     trackNum: event.trackNum
                 });
+
                 evt._obj = event;
                 evt.getProperty = function(name) {
                     return this._obj[name];
@@ -153,7 +161,7 @@
         var dateTimeFormat = 'iso8601';
         var parseDateTimeFunction = this._events.getUnit().getParser(dateTimeFormat);
 
-        if (xml === null) {
+        if (xml == null || xml == undefined) {
             return;
         }
 
@@ -161,13 +169,13 @@
         *  Find <results> tag
         */
         var node = xml.documentElement.firstChild;
-        while (node !== null && (node.nodeType !== 1 || node.nodeName !== 'results')) {
+        while (node != null && (node.nodeType != 1 || node.nodeName != 'results')) {
             node = node.nextSibling;
         }
 
         var wikiURL = null;
         var wikiSection = null;
-        if (node !== null) {
+        if (node != null) {
             wikiURL = node.getAttribute("wiki-url");
             wikiSection = node.getAttribute("wiki-section");
 
@@ -175,30 +183,30 @@
         }
 
         var added = false;
-        while (node !== null) {
-            if (node.nodeType === 1) {
+        while (node != null) {
+            if (node.nodeType == 1) {
                 var bindings = {};
                 var binding = node.firstChild;
-                while (binding !== null) {
-                    if (binding.nodeType === 1 &&
-                        binding.firstChild !== null &&
-                        binding.firstChild.nodeType === 1 &&
-                        binding.firstChild.firstChild !== null &&
-                        binding.firstChild.firstChild.nodeType === 3) {
+                while (binding != null) {
+                    if (binding.nodeType == 1 &&
+                        binding.firstChild != null &&
+                        binding.firstChild.nodeType == 1 &&
+                        binding.firstChild.firstChild != null &&
+                        binding.firstChild.firstChild.nodeType == 3) {
                         bindings[binding.getAttribute('name')] = binding.firstChild.firstChild.nodeValue;
                     }
                     binding = binding.nextSibling;
                 }
 
-                if (bindings.start === null && bindings.date !== null) {
+                if (bindings.start == null && bindings.date != null) {
                     bindings.start = bindings.date;
                 }
 
                 // instant event: default is true. Or use values from isDuration or durationEvent
-                var instant = (bindings.isDuration === null &&
-                        bindings.durationEvent === null) ||
-                    bindings.isDuration === "false" ||
-                    bindings.durationEvent === "false";
+                var instant = (bindings.isDuration == null &&
+                        bindings.durationEvent == null) ||
+                    bindings.isDuration == "false" ||
+                    bindings.durationEvent == "false";
 
                 var evt = new Timeline.DefaultEventSource.Event({
                     id: bindings.id,
@@ -300,7 +308,7 @@
     Timeline.DefaultEventSource.prototype._getBaseURL = function(url) {
         if (url.indexOf("://") < 0) {
             var url2 = this._getBaseURL(document.location.href);
-            if (url.substr(0, 1) === "/") {
+            if (url.substr(0, 1) == "/") {
                 url = url2.substr(0, url2.indexOf("/", url2.indexOf("://") + 3)) + url;
             } else {
                 url = url2 + url;
@@ -316,11 +324,11 @@
     };
 
     Timeline.DefaultEventSource.prototype._resolveRelativeURL = function(url, base) {
-        if (url === null || url === "") {
+        if (url == undefined || url == null || url == "") {
             return url;
         } else if (url.indexOf("://") > 0) {
             return url;
-        } else if (url.substr(0, 1) === "/") {
+        } else if (url.substr(0, 1) == "/") {
             return base.substr(0, base.indexOf("/", base.indexOf("://") + 3)) + url;
         } else {
             return base + url;
@@ -361,20 +369,21 @@
 
         function cleanArg(arg) {
             // clean up an arg
-            return (args[arg] !== null && args[arg] !== "") ? args[arg] : null;
+            return (args[arg] != null && args[arg] != "") ? args[arg] : null;
         }
 
         var id = args.id ? args.id.trim() : "";
         this._id = id.length > 0 ? id : Timeline.EventUtils.getNewEventID();
 
-        this._instant = args.instant || (args.end === null);
+        this._instant = args.instant || (args.end == null || args.end == undefined);
 
         this._start = args.start;
-        this._end = (args.end !== null) ? args.end : args.start;
+        this._end = (args.end != null) ? args.end : args.start;
 
-        this._latestStart = (args.latestStart !== null) ?
+        this._latestStart = (args.latestStart != null && args.latestStart != undefined) ?
             args.latestStart : (args.instant ? this._end : this._start);
-        this._earliestEnd = (args.earliestEnd !== null) ? args.earliestEnd : this._end;
+        this._earliestEnd = (args.earliestEnd != null && args.earliestEnd != undefined) ?
+            args.earliestEnd : this._end;
 
         // check sanity of dates since incorrect dates will later cause calculation errors
         // when painting
@@ -405,7 +414,7 @@
         }
 
         this._eventID = cleanArg('eventID');
-        this._text = (args.text !== null) ? SimileAjax.HTML.deEntify(args.text) : ""; // Change blank titles to ""
+        this._text = (args.text != null && args.text != undefined) ? SimileAjax.HTML.deEntify(args.text) : ""; // Change blank titles to ""
         if (err.length > 0) {
             this._text += " PROBLEM: " + err.join(", ");
         }
@@ -423,7 +432,7 @@
         this._tapeImage = cleanArg('tapeImage');
         this._tapeRepeat = cleanArg('tapeRepeat');
         this._trackNum = cleanArg('trackNum');
-        if (this._trackNum !== null) {
+        if (this._trackNum != null && this._trackNum != undefined) {
             this._trackNum = parseInt(this._trackNum);
         }
 
@@ -440,7 +449,7 @@
             return this._instant;
         },
         isImprecise: function() {
-            return this._start !== this._latestStart || this._end !== this._earliestEnd;
+            return this._start != this._latestStart || this._end != this._earliestEnd;
         },
 
         getStart: function() {
@@ -517,17 +526,17 @@
             // enough parameters for one, then create it.
             elmt.style.display = "none"; // default
 
-            if (this._wikiURL === null || this._wikiSection === null) {
+            if (this._wikiURL == null || this._wikiSection == null) {
                 return; // EARLY RETURN
             }
 
             // create the wikiID from the property or from the event text (the title)      
             var wikiID = this.getProperty("wikiID");
-            if (wikiID === null || wikiID.length === 0) {
+            if (wikiID == null || wikiID.length == 0) {
                 wikiID = this.getText(); // use the title as the backup wiki id
             }
 
-            if (wikiID === null || wikiID.length === 0) {
+            if (wikiID == null || wikiID.length == 0) {
                 return; // No wikiID. Thus EARLY RETURN
             }
 
@@ -576,7 +585,7 @@
             var link = this.getLink();
             var image = this.getImage();
 
-            if (image !== null) {
+            if (image != null && image != undefined) {
                 var img = doc.createElement("img");
                 img.src = image;
 
@@ -587,7 +596,7 @@
             var divTitle = doc.createElement("div");
             var textTitle = doc.createTextNode(title);
 
-            if (link !== null) {
+            if (link != null && image != undefined) {
                 var a = doc.createElement("a");
                 a.href = link;
                 a.appendChild(textTitle);
