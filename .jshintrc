@@ -85,6 +85,7 @@
     // Custom Globals
     "globals"       : { // additional predefined global variables
         "Timeline": true,
+        "SimileAjax": true,
         "TimelineUrlPrefix": true,
         "defaultServerLocale": true
     }
