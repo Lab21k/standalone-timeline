@@ -3,7 +3,7 @@
         return;
     }
 
-    window.Timeline = new Object();
+    window.Timeline = {};
     window.Timeline.DateTime = window.SimileAjax.DateTime;
 
     var desiredLocales = ['en'],

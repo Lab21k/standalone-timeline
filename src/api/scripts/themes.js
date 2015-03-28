@@ -2,18 +2,16 @@
  *  Classic Theme
  *==================================================
  */
-
-
-
-Timeline.ClassicTheme = new Object();
+Timeline.ClassicTheme = {};
 
 Timeline.ClassicTheme.implementations = [];
 
 Timeline.ClassicTheme.create = function(locale) {
+
     if (locale == null) {
         locale = Timeline.getDefaultLocale();
     }
-    
+
     var f = Timeline.ClassicTheme.implementations[locale];
     if (f == null) {
         f = Timeline.ClassicTheme._Impl;
@@ -23,15 +21,15 @@ Timeline.ClassicTheme.create = function(locale) {
 
 Timeline.ClassicTheme._Impl = function() {
     this.firstDayOfWeek = 0; // Sunday
-          
+
     // Note: Many styles previously set here are now set using CSS
     //       The comments indicate settings controlled by CSS, not
     //       lines to be un-commented.
     //
     //
-    // Attributes autoWidth, autoWidthAnimationTime, timeline_start 
+    // Attributes autoWidth, autoWidthAnimationTime, timeline_start
     // and timeline_stop must be set on the first band's theme.
-    // The other attributes can be set differently for each 
+    // The other attributes can be set differently for each
     // band by using different themes for the bands.
     this.autoWidth = false; // Should the Timeline automatically grow itself, as
                             // needed when too many events for the available width
@@ -48,55 +46,22 @@ Timeline.ClassicTheme._Impl = function() {
         //    "#CCC",
         //    "#AAA"
         ],
-     //   highlightColor:     "white",
         highlightOpacity:   50,
         interval: {
             line: {
                 show:       true,
                 opacity:    25
-               // color:      "#aaa",
             },
             weekend: {
                 opacity:    30
-              //  color:      "#FFFFE0",
             },
             marker: {
                 hAlign:     "Bottom",
                 vAlign:     "Right"
-                                        /*
-                hBottomStyler: function(elmt) {
-                    elmt.className = "timeline-ether-marker-bottom";
-                },
-                hBottomEmphasizedStyler: function(elmt) {
-                    elmt.className = "timeline-ether-marker-bottom-emphasized";
-                },
-                hTopStyler: function(elmt) {
-                    elmt.className = "timeline-ether-marker-top";
-                },
-                hTopEmphasizedStyler: function(elmt) {
-                    elmt.className = "timeline-ether-marker-top-emphasized";
-                },
-                */
-                                        
-                    
-               /*
-                                  vRightStyler: function(elmt) {
-                    elmt.className = "timeline-ether-marker-right";
-                },
-                vRightEmphasizedStyler: function(elmt) {
-                    elmt.className = "timeline-ether-marker-right-emphasized";
-                },
-                vLeftStyler: function(elmt) {
-                    elmt.className = "timeline-ether-marker-left";
-                },
-                vLeftEmphasizedStyler:function(elmt) {
-                    elmt.className = "timeline-ether-marker-left-emphasized";
-                }
-                */
             }
         }
     };
-    
+
     this.event = {
         track: {
                    height: 10, // px. You will need to change the track
@@ -132,19 +97,13 @@ Timeline.ClassicTheme._Impl = function() {
                                      // events. This attribute is the margin between the
                                      // bottom of the tape and the top of the icon in that
                                      // case.
-    //        color:             "#58A0DC",
-    //        impreciseColor:    "#58A0DC",
         },
         duration: {
             impreciseOpacity: 20 // tape opacity for imprecise part of duration events
-      //      color:            "#58A0DC",
-      //      impreciseColor:   "#58A0DC",
         },
         label: {
             backgroundOpacity: 50,// only used in detailed painter
                offsetFromLine:  3 // px left margin amount from icon's right edge
-      //      backgroundColor:   "white",
-      //      lineColor:         "#58A0DC",
         },
         highlightColors: [  // Use with getEventPainter().setHighlightMatcher
                             // See webapp/examples/examples.js
@@ -175,6 +134,6 @@ Timeline.ClassicTheme._Impl = function() {
             }
         }
     };
-    
+
     this.mouseWheel = 'scroll'; // 'default', 'zoom', 'scroll'
 };
