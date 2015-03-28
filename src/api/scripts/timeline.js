@@ -530,8 +530,13 @@ Timeline._Impl.prototype._initialize = function() {
     message.contentDiv.className = 'timeline-message';
     message.contentDiv.innerHTML = '<img src="' + Timeline.urlPrefix + 'images/progress-running.gif" /> Loading...';
 
-    this.showLoadingMessage = function() { message.containerDiv.style.display = 'block'; };
-    this.hideLoadingMessage = function() { message.containerDiv.style.display = 'none'; };
+    this.showLoadingMessage = function() {
+        message.containerDiv.style.display = 'block';
+    };
+
+    this.hideLoadingMessage = function() {
+        message.containerDiv.style.display = 'none';
+    };
 };
 
 Timeline._Impl.prototype._distributeWidths = function() {

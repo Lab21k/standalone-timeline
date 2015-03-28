@@ -1,4 +1,6 @@
 (function() {
+    'use strict';
+
     if ('Timeline' in window) {
         return;
     }
@@ -6,14 +8,15 @@
     window.Timeline = {};
     window.Timeline.DateTime = window.SimileAjax.DateTime;
 
-    var desiredLocales = ['en'],
-        defaultServerLocale = 'en',
-        forceLocale = null;
+    var defaultServerLocale = 'en';
 
-    Timeline.urlPrefix = (typeof TimelineUrlPrefix !== 'undefined') ? TimelineUrlPrefix : '/dist/src/api/';
+    if (typeof TimelineUrlPrefix !== 'undefined') {
+        Timeline.urlPrefix = TimelineUrlPrefix;
+    } else {
+        Timeline.urlPrefix = '/dist/src/api/';
+    }
 
     var defaultClientLocale = defaultServerLocale;
-    var defaultClientLocales = ('language' in navigator ? navigator.language : navigator.browserLanguage).split(';');
 
     Timeline.serverLocale = defaultServerLocale;
     Timeline.clientLocale = defaultClientLocale;
