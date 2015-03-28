@@ -1,68 +1,71 @@
-/*==================================================
- *  Default Unit
- *==================================================
- */
+(function() {
+    'use strict';
 
-Timeline.NativeDateUnit = new Object();
+    /*==================================================
+    *  Default Unit
+    *==================================================
+    */
 
-Timeline.NativeDateUnit.createLabeller = function(locale, timeZone) {
-    return new Timeline.GregorianDateLabeller(locale, timeZone);
-};
+    Timeline.NativeDateUnit = {};
 
-Timeline.NativeDateUnit.makeDefaultValue = function() {
-    return new Date();
-};
+    Timeline.NativeDateUnit.createLabeller = function(locale, timeZone) {
+        return new Timeline.GregorianDateLabeller(locale, timeZone);
+    };
 
-Timeline.NativeDateUnit.cloneValue = function(v) {
-    return new Date(v.getTime());
-};
+    Timeline.NativeDateUnit.makeDefaultValue = function() {
+        return new Date();
+    };
 
-Timeline.NativeDateUnit.getParser = function(format) {
-    if (typeof format == "string") {
-        format = format.toLowerCase();
-    }
-    return (format == "iso8601" || format == "iso 8601") ?
-        Timeline.DateTime.parseIso8601DateTime : 
-        Timeline.DateTime.parseGregorianDateTime;
-};
+    Timeline.NativeDateUnit.cloneValue = function(v) {
+        return new Date(v.getTime());
+    };
 
-Timeline.NativeDateUnit.parseFromObject = function(o) {
-    return Timeline.DateTime.parseGregorianDateTime(o);
-};
+    Timeline.NativeDateUnit.getParser = function(format) {
+        if (typeof format === "string") {
+            format = format.toLowerCase();
+        }
+        return (format === "iso8601" || format === "iso 8601") ?
+            Timeline.DateTime.parseIso8601DateTime :
+            Timeline.DateTime.parseGregorianDateTime;
+    };
 
-Timeline.NativeDateUnit.toNumber = function(v) {
-    return v.getTime();
-};
+    Timeline.NativeDateUnit.parseFromObject = function(o) {
+        return Timeline.DateTime.parseGregorianDateTime(o);
+    };
 
-Timeline.NativeDateUnit.fromNumber = function(n) {
-    return new Date(n);
-};
+    Timeline.NativeDateUnit.toNumber = function(v) {
+        return v.getTime();
+    };
 
-Timeline.NativeDateUnit.compare = function(v1, v2) {
-    var n1, n2;
-    if (typeof v1 == "object") {
-        n1 = v1.getTime();
-    } else {
-        n1 = Number(v1);
-    }
-    if (typeof v2 == "object") {
-        n2 = v2.getTime();
-    } else {
-        n2 = Number(v2);
-    }
-    
-    return n1 - n2;
-};
+    Timeline.NativeDateUnit.fromNumber = function(n) {
+        return new Date(n);
+    };
 
-Timeline.NativeDateUnit.earlier = function(v1, v2) {
-    return Timeline.NativeDateUnit.compare(v1, v2) < 0 ? v1 : v2;
-};
+    Timeline.NativeDateUnit.compare = function(v1, v2) {
+        var n1, n2;
+        if (typeof v1 === "object") {
+            n1 = v1.getTime();
+        } else {
+            n1 = Number(v1);
+        }
+        if (typeof v2 === "object") {
+            n2 = v2.getTime();
+        } else {
+            n2 = Number(v2);
+        }
 
-Timeline.NativeDateUnit.later = function(v1, v2) {
-    return Timeline.NativeDateUnit.compare(v1, v2) > 0 ? v1 : v2;
-};
+        return n1 - n2;
+    };
 
-Timeline.NativeDateUnit.change = function(v, n) {
-    return new Date(v.getTime() + n);
-};
+    Timeline.NativeDateUnit.earlier = function(v1, v2) {
+        return Timeline.NativeDateUnit.compare(v1, v2) < 0 ? v1 : v2;
+    };
 
+    Timeline.NativeDateUnit.later = function(v1, v2) {
+        return Timeline.NativeDateUnit.compare(v1, v2) > 0 ? v1 : v2;
+    };
+
+    Timeline.NativeDateUnit.change = function(v, n) {
+        return new Date(v.getTime() + n);
+    };
+}());
