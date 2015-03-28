@@ -240,7 +240,8 @@
             console.log('Failed to load json data from ' + url + '\n' + statusText);
         };
         var fDone = function(xmlhttp) {
-            f(eval('(' + xmlhttp.responseText + ')'), url);
+            var json = JSON.parse(xmlhttp.responseText);
+            f(json, url);
         };
         SimileAjax.XmlHttp.get(url, fError, fDone);
     };
@@ -404,7 +405,8 @@
         };
         var fDone = function(xmlhttp) {
             try {
-                f(eval('(' + xmlhttp.responseText + ')'), url);
+                var json = JSON.parse(xmlhttp.responseText);
+                f(json, url);
             } finally {
                 tl.hideLoadingMessage();
             }
