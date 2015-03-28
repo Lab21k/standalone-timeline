@@ -480,55 +480,55 @@
     };
 
     Timeline._Band.prototype._onMouseScroll = function(innerFrame, evt) {
-    var now = new Date();
-    now = now.getTime();
+        var now = new Date();
+        now = now.getTime();
 
-    if (!this._lastScrollTime || ((now - this._lastScrollTime) > 50)) {
-        // limit 1 scroll per 200ms due to FF3 sending multiple events back to back
-        this._lastScrollTime = now;
+        if (!this._lastScrollTime || ((now - this._lastScrollTime) > 50)) {
+            // limit 1 scroll per 200ms due to FF3 sending multiple events back to back
+            this._lastScrollTime = now;
 
-        var delta = 0;
-        if (evt.wheelDelta) {
-            delta = evt.wheelDelta/120;
-        } else if (evt.detail) {
-            delta = -evt.detail/3;
-        }
+            var delta = 0;
+            if (evt.wheelDelta) {
+                delta = evt.wheelDelta/120;
+            } else if (evt.detail) {
+                delta = -evt.detail/3;
+            }
 
-        // either scroll or zoom
-        var mouseWheel = this._theme.mouseWheel;
+            // either scroll or zoom
+            var mouseWheel = this._theme.mouseWheel;
 
-        if (this._zoomSteps || mouseWheel === 'zoom') {
-            var loc = SimileAjax.DOM.getEventRelativeCoordinates(evt, innerFrame);
-            if (delta !== 0) {
-                var zoomIn;
+            if (this._zoomSteps || mouseWheel === 'zoom') {
+                var loc = SimileAjax.DOM.getEventRelativeCoordinates(evt, innerFrame);
+                if (delta !== 0) {
+                    var zoomIn;
 
-                if (delta > 0) {
-                    zoomIn = true;
-                } else if (delta < 0) {
-                    zoomIn = false;
+                    if (delta > 0) {
+                        zoomIn = true;
+                    } else if (delta < 0) {
+                        zoomIn = false;
+                    }
+
+                    // call zoom on the timeline so we could zoom multiple bands if desired
+                    this._timeline.zoom(zoomIn, loc.x, loc.y, innerFrame);
                 }
-
-                // call zoom on the timeline so we could zoom multiple bands if desired
-                this._timeline.zoom(zoomIn, loc.x, loc.y, innerFrame);
+            }
+            else if (mouseWheel === 'scroll') {
+                var move_amt = 50 * (delta < 0 ? -1 : 1);
+            this._moveEther(move_amt);
             }
         }
-        else if (mouseWheel === 'scroll') {
-            var move_amt = 50 * (delta < 0 ? -1 : 1);
-        this._moveEther(move_amt);
+
+        // prevent bubble
+        if (evt.stopPropagation) {
+            evt.stopPropagation();
         }
-    }
+        evt.cancelBubble = true;
 
-    // prevent bubble
-    if (evt.stopPropagation) {
-        evt.stopPropagation();
-    }
-    evt.cancelBubble = true;
-
-    // prevent the default action
-    if (evt.preventDefault) {
-        evt.preventDefault();
-    }
-    evt.returnValue = false;
+        // prevent the default action
+        if (evt.preventDefault) {
+            evt.preventDefault();
+        }
+        evt.returnValue = false;
     };
 
     Timeline._Band.prototype._onDblClick = function(innerFrame, evt) {
