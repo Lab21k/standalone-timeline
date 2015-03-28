@@ -16,10 +16,10 @@
             this._unit = params.unit;
         }
 
-        this._startDate = (typeof params.startDate === String) ?
+        this._startDate = (typeof params.startDate === "string") ?
             this._unit.parseFromObject(params.startDate) : params.startDate;
 
-        this._endDate = (typeof params.endDate === String) ?
+        this._endDate = (typeof params.endDate === "string") ?
             this._unit.parseFromObject(params.endDate) : params.endDate;
 
         this._startLabel = params.startLabel !== undefined ? params.startLabel : ""; // not null!
@@ -134,7 +134,7 @@
 
     Timeline.PointHighlightDecorator = function(params) {
         this._unit = params.unit !== undefined ? params.unit : SimileAjax.NativeDateUnit;
-        this._date = (typeof params.date === String) ?
+        this._date = (typeof params.date === "string") ?
             this._unit.parseFromObject(params.date) : params.date;
         this._width = params.width !== undefined ? params.width : 10;
         // Since the width is used to calculate placements (see minPixel, below), we

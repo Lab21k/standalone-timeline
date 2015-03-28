@@ -880,7 +880,7 @@
         iconDiv.style.top = top + "px";
         iconDiv.appendChild(img);
 
-        if ("tooltip" in commonData && typeof commonData.tooltip === String) {
+        if ("tooltip" in commonData && typeof commonData.tooltip === "string") {
             iconDiv.title = commonData.tooltip;
         }
 
@@ -906,13 +906,13 @@
         labelDiv.style.top = top + "px";
         labelDiv.innerHTML = labelData.text;
 
-        if ("tooltip" in commonData && typeof commonData.tooltip === String) {
+        if ("tooltip" in commonData && typeof commonData.tooltip === "string") {
             labelDiv.title = commonData.tooltip;
         }
-        if ("color" in labelData && typeof labelData.color === String) {
+        if ("color" in labelData && typeof labelData.color === "string") {
             labelDiv.style.color = labelData.color;
         }
-        if ("className" in labelData && typeof labelData.className === String) {
+        if ("className" in labelData && typeof labelData.className === "string") {
             labelDiv.className += ' ' + labelData.className;
         }
 
@@ -940,22 +940,22 @@
         tapeDiv.style.width = width + "px";
         tapeDiv.style.height = height + "px";
 
-        if ("tooltip" in commonData && typeof commonData.tooltip === String) {
+        if ("tooltip" in commonData && typeof commonData.tooltip === "string") {
             tapeDiv.title = commonData.tooltip;
         }
-        if (color !== null && typeof tapeData.color === String) {
+        if (color !== null && typeof tapeData.color === "string") {
             tapeDiv.style.backgroundColor = color;
         }
 
-        if ("backgroundImage" in tapeData && typeof tapeData.backgroundImage === String) {
+        if ("backgroundImage" in tapeData && typeof tapeData.backgroundImage === "string") {
             tapeDiv.style.backgroundImage = "url(" + tapeData.backgroundImage + ")";
             tapeDiv.style.backgroundRepeat =
-                ("backgroundRepeat" in tapeData && typeof tapeData.backgroundRepeat === String) ? tapeData.backgroundRepeat : 'repeat';
+                ("backgroundRepeat" in tapeData && typeof tapeData.backgroundRepeat === "string") ? tapeData.backgroundRepeat : 'repeat';
         }
 
         SimileAjax.Graphics.setOpacity(tapeDiv, opacity);
 
-        if ("className" in tapeData && typeof tapeData.className === String) {
+        if ("className" in tapeData && typeof tapeData.className === "string") {
             tapeDiv.className += ' ' + tapeData.className;
         }
 

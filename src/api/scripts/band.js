@@ -20,12 +20,10 @@
     * which enforce privacy in objects.
     *
     * We also want to use jslint:  http://www.jslint.com/
-    *
+    * Update (Lab21k): Using jshint.
     *
     *==================================================
     */
-
-
 
     /*==================================================
     *  Band
@@ -35,7 +33,7 @@
         // Set up the band's object
         // Munge params: If autoWidth is on for the Timeline, then ensure that
         // bandInfo.width is an integer
-        if (timeline.autoWidth && typeof bandInfo.width === String) {
+        if (timeline.autoWidth && typeof bandInfo.width === "string") {
             bandInfo.width = bandInfo.width.indexOf("%") > -1 ? 0 : parseInt(bandInfo.width);
         }
 
@@ -387,7 +385,7 @@
 
     Timeline._Band.prototype.createLayerDiv = function(zIndex, className) {
         var div = this._timeline.getDocument().createElement("div");
-        div.className = "timeline-band-layer" + (typeof className === String ? (" " + className) : "");
+        div.className = "timeline-band-layer" + (typeof className === "string" ? (" " + className) : "");
         div.style.zIndex = zIndex;
         this._innerDiv.appendChild(div);
         var innerDiv = this._timeline.getDocument().createElement("div");
