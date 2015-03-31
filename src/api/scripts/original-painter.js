@@ -350,7 +350,12 @@
 
         var labelDivClassName = this._getLabelDivClassName(evt);
         var labelSize = this._frc.computeSize(text, labelDivClassName);
-        var labelLeft = startPixel;
+        var labelLeft;
+        if ((endPixel - startPixel) > labelSize.width) {
+            labelLeft = endPixel - labelSize.width; // startPixel
+        } else {
+            labelLeft = startPixel; // startPixel
+        }
         var labelRight = labelLeft + labelSize.width;
 
         var rightEdge = Math.max(labelRight, endPixel);
