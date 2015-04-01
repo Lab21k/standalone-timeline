@@ -2,9 +2,9 @@
     'use strict';
 
     /*==================================================
-    *  Gregorian Ether Painter
-    *==================================================
-    */
+     *  Gregorian Ether Painter
+     *==================================================
+     */
 
     Timeline.GregorianEtherPainter = function(params) {
         this._params = params;
@@ -91,9 +91,9 @@
     };
 
     /*==================================================
-    *  Hot Zone Gregorian Ether Painter
-    *==================================================
-    */
+     *  Hot Zone Gregorian Ether Painter
+     *==================================================
+     */
 
     Timeline.HotZoneGregorianEtherPainter = function(params) {
         this._params = params;
@@ -250,9 +250,9 @@
     };
 
     /*==================================================
-    *  Year Count Ether Painter
-    *==================================================
-    */
+     *  Year Count Ether Painter
+     *==================================================
+     */
 
     Timeline.YearCountEtherPainter = function(params) {
         this._params = params;
@@ -338,9 +338,9 @@
     Timeline.YearCountEtherPainter.prototype.softPaint = function() {};
 
     /*==================================================
-    *  Quarterly Ether Painter
-    *==================================================
-    */
+     *  Quarterly Ether Painter
+     *==================================================
+     */
 
     Timeline.QuarterlyEtherPainter = function(params) {
         this._params = params;
@@ -431,9 +431,9 @@
     Timeline.QuarterlyEtherPainter.prototype.softPaint = function() {};
 
     /*==================================================
-    *  Ether Interval Marker Layout
-    *==================================================
-    */
+     *  Ether Interval Marker Layout
+     *==================================================
+     */
 
     Timeline.EtherIntervalMarkerLayout = function(timeline, band, theme, align, showLine) {
         var horizontal = timeline.isHorizontal();
@@ -535,9 +535,9 @@
     };
 
     /*==================================================
-    *  Ether Highlight Layout
-    *==================================================
-    */
+     *  Ether Highlight Layout
+     *==================================================
+     */
 
     Timeline.EtherHighlight = function(timeline, band, theme, backgroundLayer) {
         var horizontal = timeline.isHorizontal();

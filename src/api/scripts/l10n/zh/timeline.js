@@ -4,6 +4,5 @@
  */
 
 Timeline.strings["zh"] = {
-    wikiLinkLabel:  "讨论"
+    wikiLinkLabel: "讨论"
 };
-

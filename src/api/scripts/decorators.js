@@ -2,9 +2,9 @@
     'use strict';
 
     /*==================================================
-    *  Span Highlight Decorator
-    *==================================================
-    */
+     *  Span Highlight Decorator
+     *==================================================
+     */
 
     Timeline.SpanHighlightDecorator = function(params) {
         // When evaluating params, test against null. Not "p in params". Testing against
@@ -128,9 +128,9 @@
     Timeline.SpanHighlightDecorator.prototype.softPaint = function() {};
 
     /*==================================================
-    *  Point Highlight Decorator
-    *==================================================
-    */
+     *  Point Highlight Decorator
+     *==================================================
+     */
 
     Timeline.PointHighlightDecorator = function(params) {
         this._unit = params.unit !== undefined ? params.unit : SimileAjax.NativeDateUnit;

@@ -2,9 +2,9 @@
     'use strict';
 
     /*==================================================
-    *  Classic Theme
-    *==================================================
-    */
+     *  Classic Theme
+     *==================================================
+     */
     Timeline.ClassicTheme = {};
     Timeline.ClassicTheme.implementations = [];
 

@@ -3,9 +3,9 @@
     'use strict';
 
     /*==================================================
-    *  Gregorian Date Labeller
-    *==================================================
-    */
+     *  Gregorian Date Labeller
+     *==================================================
+     */
 
     Timeline.GregorianDateLabeller = function(locale, timeZone) {
         this._locale = locale;

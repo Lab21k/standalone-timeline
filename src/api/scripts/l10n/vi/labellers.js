@@ -10,17 +10,20 @@ Timeline.GregorianDateLabeller.monthNames["vi"] = [
 Timeline.GregorianDateLabeller.labelIntervalFunctions["vi"] = function(date, intervalUnit) {
     var text;
     var emphasized = false;
-    
+
     var date2 = Timeline.DateTime.removeTimeZoneOffset(date, this._timeZone);
-    
-    switch(intervalUnit) {
-    case Timeline.DateTime.DAY:
-    case Timeline.DateTime.WEEK:
-        text = date2.getUTCDate() + "/" + (date2.getUTCMonth() + 1);
-        break;
-    default:
-        return this.defaultLabelInterval(date, intervalUnit);
+
+    switch (intervalUnit) {
+        case Timeline.DateTime.DAY:
+        case Timeline.DateTime.WEEK:
+            text = date2.getUTCDate() + "/" + (date2.getUTCMonth() + 1);
+            break;
+        default:
+            return this.defaultLabelInterval(date, intervalUnit);
     }
-    
-    return { text: text, emphasized: emphasized };
+
+    return {
+        text: text,
+        emphasized: emphasized
+    };
 };

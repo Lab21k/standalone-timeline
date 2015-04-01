@@ -3,10 +3,10 @@
     'use strict';
 
     /*
-    * ==================================================
-    *  An "ether" is a object that maps date/time to pixel coordinates.
-    * ==================================================
-    */
+     * ==================================================
+     *  An "ether" is a object that maps date/time to pixel coordinates.
+     * ==================================================
+     */
 
     /*
      * ==================================================
@@ -83,9 +83,9 @@
 
 
     /*==================================================
-    *  Hot Zone Ether
-    *==================================================
-    */
+     *  Hot Zone Ether
+     *==================================================
+     */
 
     Timeline.HotZoneEther = function(params) {
         this._params = params;
@@ -197,9 +197,9 @@
     };
 
     Timeline.HotZoneEther.prototype._dateDiffToPixelOffset = function(fromDate, toDate) {
-        var scale       = this._getScale(),
-            fromTime    = fromDate,
-            toTime      = toDate,
+        var scale = this._getScale(),
+            fromTime = fromDate,
+            toTime = toDate,
             pixels = 0;
 
         var pixels = 0;

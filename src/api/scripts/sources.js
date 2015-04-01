@@ -1,9 +1,9 @@
 (function() {
     'use strict';
     /*==================================
-    *  Default Event Source
-    *==================================
-    */
+     *  Default Event Source
+     *==================================
+     */
 
 
     Timeline.DefaultEventSource = function(eventIndex) {
@@ -44,13 +44,12 @@
                 }
                 // instant event: default is true. Or use values from isDuration or durationEvent
                 var instant =
-                        ( (node.getAttribute("isDuration") === null ||
+                    ((node.getAttribute("isDuration") === null ||
                             node.getAttribute("isDuration") === undefined) &&
-                            (node.getAttribute("durationEvent") === null &&
-                            node.getAttribute("durationEvent") === undefined))
-                        || (
-                            node.getAttribute("isDuration") == "false" ||
-                            node.getAttribute("durationEvent") == "false");
+                        (node.getAttribute("durationEvent") === null &&
+                            node.getAttribute("durationEvent") === undefined)) || (
+                        node.getAttribute("isDuration") == "false" ||
+                        node.getAttribute("durationEvent") == "false");
 
                 var evt = new Timeline.DefaultEventSource.Event({
                     id: node.getAttribute("id"),
@@ -203,8 +202,8 @@
     };
 
     /*
-    *  Contributed by Morten Frederiksen, http://www.wasab.dk/morten/
-    */
+     *  Contributed by Morten Frederiksen, http://www.wasab.dk/morten/
+     */
     Timeline.DefaultEventSource.prototype.loadSPARQL = function(xml, url) {
         var base = this._getBaseURL(url);
 
@@ -216,8 +215,8 @@
         }
 
         /*
-        *  Find <results> tag
-        */
+         *  Find <results> tag
+         */
         var node = xml.documentElement.firstChild;
         while (node != null && (node.nodeType != 1 || node.nodeName != 'results')) {
             node = node.nextSibling;

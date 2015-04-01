@@ -2,9 +2,9 @@
     'use strict';
 
     /*==================================================
-    *  Overview Event Painter
-    *==================================================
-    */
+     *  Overview Event Painter
+     *==================================================
+     */
 
     Timeline.OverviewEventPainter = function(params) {
         this._params = params;

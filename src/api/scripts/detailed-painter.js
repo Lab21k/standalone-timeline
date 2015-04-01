@@ -1,9 +1,9 @@
 (function() {
     'use strict';
     /*==================================================
-    *  Detailed Event Painter
-    *==================================================
-    */
+     *  Detailed Event Painter
+     *==================================================
+     */
 
     // Note: a number of features from original-painter 
     //       are not yet implemented in detailed painter.

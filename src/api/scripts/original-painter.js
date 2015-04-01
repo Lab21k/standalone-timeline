@@ -1,60 +1,60 @@
 (function() {
     'use strict';
     /*==================================================
-    *  Original Event Painter
-    *==================================================
-    */
+     *  Original Event Painter
+     *==================================================
+     */
 
     /*==================================================
-    *
-    * To enable a single event listener to monitor everything
-    * on a Timeline, we need a way to map from an event's icon,
-    * label or tape element to the associated timeline, band and
-    * specific event.
-    *
-    * Thus a set format is used for the id's of the
-    * events' elements on the Timeline--
-    *
-    * element id format for labels, icons, tapes:
-    *   labels: label-tl-<timelineID>-<band_index>-<evt.id>
-    *    icons: icon-tl-<timelineID>-<band_index>-<evt.id>
-    *    tapes: tape1-tl-<timelineID>-<band_index>-<evt.id>
-    *           tape2-tl-<timelineID>-<band_index>-<evt.id>
-    *           // some events have more than one tape
-    *    highlight: highlight1-tl-<timelineID>-<band_index>-<evt.id>
-    *               highlight2-tl-<timelineID>-<band_index>-<evt.id>
-    *           // some events have more than one highlight div (future)
-    * You can then retrieve the band/timeline objects and event object
-    * by using Timeline.EventUtils.decodeEventElID
-    *
-    *==================================================
-    */
+     *
+     * To enable a single event listener to monitor everything
+     * on a Timeline, we need a way to map from an event's icon,
+     * label or tape element to the associated timeline, band and
+     * specific event.
+     *
+     * Thus a set format is used for the id's of the
+     * events' elements on the Timeline--
+     *
+     * element id format for labels, icons, tapes:
+     *   labels: label-tl-<timelineID>-<band_index>-<evt.id>
+     *    icons: icon-tl-<timelineID>-<band_index>-<evt.id>
+     *    tapes: tape1-tl-<timelineID>-<band_index>-<evt.id>
+     *           tape2-tl-<timelineID>-<band_index>-<evt.id>
+     *           // some events have more than one tape
+     *    highlight: highlight1-tl-<timelineID>-<band_index>-<evt.id>
+     *               highlight2-tl-<timelineID>-<band_index>-<evt.id>
+     *           // some events have more than one highlight div (future)
+     * You can then retrieve the band/timeline objects and event object
+     * by using Timeline.EventUtils.decodeEventElID
+     *
+     *==================================================
+     */
 
     /* 
-    *    eventPaintListener functions receive calls about painting.
-    *    function(band, op, evt, els)
-    *       context: 'this' will be an OriginalEventPainter object.
-    *                It has properties and methods for obtaining
-    *                the relevant band, timeline, etc
-    *       band = the band being painted
-    *       op = 'paintStarting' // the painter is about to remove
-    *            all previously painted events, if any. It will
-    *            then start painting all of the visible events that
-    *            pass the filter.
-    *            evt = null, els = null
-    *       op = 'paintEnded' // the painter has finished painting
-    *            all of the visible events that passed the filter
-    *            evt = null, els = null
-    *       op = 'paintedEvent' // the painter just finished painting an event
-    *            evt = event just painted
-    *            els = array of painted elements' divs. Depending on the event,
-    *                  the array could be just a tape or icon (if no label).
-    *                  Or could include label, multiple tape divs (imprecise event),
-    *                  highlight divs. The array is not ordered. The meaning of
-    *                  each el is available by decoding the el's id
-    *      Note that there may be no paintedEvent calls if no events were visible
-    *      or passed the filter.
-    */
+     *    eventPaintListener functions receive calls about painting.
+     *    function(band, op, evt, els)
+     *       context: 'this' will be an OriginalEventPainter object.
+     *                It has properties and methods for obtaining
+     *                the relevant band, timeline, etc
+     *       band = the band being painted
+     *       op = 'paintStarting' // the painter is about to remove
+     *            all previously painted events, if any. It will
+     *            then start painting all of the visible events that
+     *            pass the filter.
+     *            evt = null, els = null
+     *       op = 'paintEnded' // the painter has finished painting
+     *            all of the visible events that passed the filter
+     *            evt = null, els = null
+     *       op = 'paintedEvent' // the painter just finished painting an event
+     *            evt = event just painted
+     *            els = array of painted elements' divs. Depending on the event,
+     *                  the array could be just a tape or icon (if no label).
+     *                  Or could include label, multiple tape divs (imprecise event),
+     *                  highlight divs. The array is not ordered. The meaning of
+     *                  each el is available by decoding the el's id
+     *      Note that there may be no paintedEvent calls if no events were visible
+     *      or passed the filter.
+     */
 
     Timeline.OriginalEventPainter = function(params) {
         this._params = params;

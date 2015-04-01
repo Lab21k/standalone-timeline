@@ -2,36 +2,36 @@
     'use strict';
 
     /*=================================================
-    *
-    * Coding standards:
-    *
-    * We aim towards Douglas Crockford's Javascript conventions.
-    * See:  http://javascript.crockford.com/code.html
-    * See also: http://www.crockford.com/javascript/javascript.html
-    *
-    * That said, this JS code was written before some recent JS
-    * support libraries became widely used or available.
-    * In particular, the _ character is used to indicate a class function or
-    * variable that should be considered private to the class.
-    *
-    * The code mostly uses accessor methods for getting/setting the private
-    * class variables.
-    *
-    * Over time, we'd like to formalize the convention by using support libraries
-    * which enforce privacy in objects.
-    *
-    * We also want to use jslint:  http://www.jslint.com/
-    *
-    *
-    *==================================================
-    */
+     *
+     * Coding standards:
+     *
+     * We aim towards Douglas Crockford's Javascript conventions.
+     * See:  http://javascript.crockford.com/code.html
+     * See also: http://www.crockford.com/javascript/javascript.html
+     *
+     * That said, this JS code was written before some recent JS
+     * support libraries became widely used or available.
+     * In particular, the _ character is used to indicate a class function or
+     * variable that should be considered private to the class.
+     *
+     * The code mostly uses accessor methods for getting/setting the private
+     * class variables.
+     *
+     * Over time, we'd like to formalize the convention by using support libraries
+     * which enforce privacy in objects.
+     *
+     * We also want to use jslint:  http://www.jslint.com/
+     *
+     *
+     *==================================================
+     */
 
 
 
     /*==================================================
-    *  Timeline VERSION
-    *==================================================
-    */
+     *  Timeline VERSION
+     *==================================================
+     */
     // Note: version is also stored in the build.xml file
     Timeline.version = '2.3.0'; // use format 'pre 1.2.3' for trunk versions 
     Timeline.ajax_lib_version = SimileAjax.version; // Waiting for version string method from Ajax library
@@ -39,9 +39,9 @@
     // cf method Timeline.writeVersion
 
     /*==================================================
-    *  Timeline
-    *==================================================
-    */
+     *  Timeline
+     *==================================================
+     */
     Timeline.strings = {}; // localization string tables
     Timeline.HORIZONTAL = 0;
     Timeline.VERTICAL = 1;
@@ -258,9 +258,9 @@
 
 
     /*==================================================
-    *  Timeline Implementation object
-    *==================================================
-    */
+     *  Timeline Implementation object
+     *==================================================
+     */
     Timeline._Impl = function(elmt, bandInfos, orientation, unit, timelineID) {
         SimileAjax.WindowManager.initialize();
 
@@ -489,8 +489,8 @@
             containerDiv.className.split(' ').concat('timeline-container').join(' ');
 
         /*
-        * Set css-class on container div that will define orientation
-        */
+         * Set css-class on container div that will define orientation
+         */
         var orientation = (this.isHorizontal()) ? 'horizontal' : 'vertical';
         containerDiv.className += ' timeline-' + orientation;
 
@@ -510,8 +510,8 @@
         */
 
         /*
-        *  creating bands
-        */
+         *  creating bands
+         */
         this._bands = [];
         for (var i = 0; i < this._bandInfos.length; i++) {
             var band = new Timeline._Band(this, this._bandInfos[i], i);
@@ -520,8 +520,8 @@
         this._distributeWidths();
 
         /*
-        *  sync'ing bands
-        */
+         *  sync'ing bands
+         */
         for (var x = 0; x < this._bandInfos.length; x++) {
             var bandInfo = this._bandInfos[x];
             if ('syncWith' in bandInfo) {
@@ -538,8 +538,8 @@
         }
 
         /*
-        *  creating loading UI
-        */
+         *  creating loading UI
+         */
         var message = SimileAjax.Graphics.createMessageBubble(doc);
         message.containerDiv.className = 'timeline-message-container';
         containerDiv.appendChild(message.containerDiv);
@@ -595,8 +595,8 @@
             going_forward = shift < 0;
 
         // Is there an edge?
-        if ((going_back && ( this.timeline_start === null || this.timeline_start === undefined)) ||
-            (going_forward && ( this.timeline_stop === null || this.timeline_stop === undefined )) ||
+        if ((going_back && (this.timeline_start === null || this.timeline_start === undefined)) ||
+            (going_forward && (this.timeline_stop === null || this.timeline_stop === undefined)) ||
             (shift === 0)) {
             return (true); // early return
         }

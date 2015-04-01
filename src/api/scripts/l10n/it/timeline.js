@@ -4,6 +4,5 @@
  */
 
 Timeline.strings["it"] = {
-    wikiLinkLabel:  "Discuti"
+    wikiLinkLabel: "Discuti"
 };
-

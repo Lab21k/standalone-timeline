@@ -1,34 +1,34 @@
 (function() {
     'use strict';
     /*=================================================
-    *
-    * Coding standards:
-    *
-    * We aim towards Douglas Crockford's Javascript conventions.
-    * See:  http://javascript.crockford.com/code.html
-    * See also: http://www.crockford.com/javascript/javascript.html
-    *
-    * That said, this JS code was written before some recent JS
-    * support libraries became widely used or available.
-    * In particular, the _ character is used to indicate a class function or
-    * variable that should be considered private to the class.
-    *
-    * The code mostly uses accessor methods for getting/setting the private
-    * class variables.
-    *
-    * Over time, we'd like to formalize the convention by using support libraries
-    * which enforce privacy in objects.
-    *
-    * We also want to use jslint:  http://www.jslint.com/
-    * Update (Lab21k): Using jshint.
-    *
-    *==================================================
-    */
+     *
+     * Coding standards:
+     *
+     * We aim towards Douglas Crockford's Javascript conventions.
+     * See:  http://javascript.crockford.com/code.html
+     * See also: http://www.crockford.com/javascript/javascript.html
+     *
+     * That said, this JS code was written before some recent JS
+     * support libraries became widely used or available.
+     * In particular, the _ character is used to indicate a class function or
+     * variable that should be considered private to the class.
+     *
+     * The code mostly uses accessor methods for getting/setting the private
+     * class variables.
+     *
+     * Over time, we'd like to formalize the convention by using support libraries
+     * which enforce privacy in objects.
+     *
+     * We also want to use jslint:  http://www.jslint.com/
+     * Update (Lab21k): Using jshint.
+     *
+     *==================================================
+     */
 
     /*==================================================
-    *  Band
-    *==================================================
-    */
+     *  Band
+     *==================================================
+     */
     Timeline._Band = function(timeline, bandInfo, index) {
         // Set up the band's object
         // Munge params: If autoWidth is on for the Timeline, then ensure that
@@ -65,8 +65,8 @@
         };
 
         /*
-        *  Install a textbox to capture keyboard events
-        */
+         *  Install a textbox to capture keyboard events
+         */
         var inputDiv = this._timeline.getDocument().createElement("div");
         inputDiv.className = "timeline-band-input";
         this._timeline.addDiv(inputDiv);
@@ -78,13 +78,13 @@
         SimileAjax.DOM.registerEventWithObject(this._keyboardInput, "keyup", this, "_onKeyUp");
 
         /*
-        *  The band's outer most div that slides with respect to the timeline's div
-        */
+         *  The band's outer most div that slides with respect to the timeline's div
+         */
         this._div = this._timeline.getDocument().createElement("div");
         this._div.id = "timeline-band-" + index;
         this._div.className = "timeline-band timeline-band-" + index;
         this._timeline.addDiv(this._div);
-        
+
         SimileAjax.DOM.registerEventWithObject(this._div, "mousedown", this, "_onMouseDown");
         SimileAjax.DOM.registerEventWithObject(this._div, "mousemove", this, "_onMouseMove");
         SimileAjax.DOM.registerEventWithObject(this._div, "mouseup", this, "_onMouseUp");
@@ -102,15 +102,15 @@
         }
 
         /*
-        *  The inner div that contains layers
-        */
+         *  The inner div that contains layers
+         */
         this._innerDiv = this._timeline.getDocument().createElement("div");
         this._innerDiv.className = "timeline-band-inner";
         this._div.appendChild(this._innerDiv);
 
         /*
-        *  Initialize parts of the band
-        */
+         *  Initialize parts of the band
+         */
         this._ether = bandInfo.ether;
         bandInfo.ether.initialize(this, timeline);
 
@@ -131,7 +131,7 @@
         }
 
         this._eventPainter = bandInfo.eventPainter;
-        this._eventTracksNeeded = 0;   // set by painter via updateEventTrackInfo
+        this._eventTracksNeeded = 0; // set by painter via updateEventTrackInfo
         this._eventTrackIncrement = 0;
         bandInfo.eventPainter.initialize(this, timeline);
 
@@ -243,19 +243,19 @@
         //
         // desiredWidth for the band is 
         //   (number of tracks + margin) * track increment
-        if (! this._timeline.autoWidth) {
-        return; // early return
+        if (!this._timeline.autoWidth) {
+            return; // early return
         }
 
         var overviewBand = this._eventPainter.getType() === 'overview';
         var margin = overviewBand ?
-        this._theme.event.overviewTrack.autoWidthMargin :
-        this._theme.event.track.autoWidthMargin;
+            this._theme.event.overviewTrack.autoWidthMargin :
+            this._theme.event.track.autoWidthMargin;
         var desiredWidth = Math.ceil((this._eventTracksNeeded + margin) *
-                        this._eventTrackIncrement);
+            this._eventTrackIncrement);
         // add offset amount (additional margin)
-        desiredWidth += overviewBand ? this._theme.event.overviewTrack.offset : 
-                                    this._theme.event.track.offset;
+        desiredWidth += overviewBand ? this._theme.event.overviewTrack.offset :
+            this._theme.event.track.offset;
         var bandInfo = this._bandInfo;
 
         if (desiredWidth !== bandInfo.width) {
@@ -289,13 +289,13 @@
         if (this._timeline.isHorizontal()) {
             this._div.style.top = shift + "px";
             this._div.style.height = width + "px";
-            
+
             inputDiv.style.top = middle + "px";
             inputDiv.style.left = "-1em";
         } else {
             this._div.style.left = shift + "px";
             this._div.style.width = width + "px";
-            
+
             inputDiv.style.left = middle + "px";
             inputDiv.style.top = "-1em";
         }
@@ -487,9 +487,9 @@
 
             var delta = 0;
             if (evt.wheelDelta) {
-                delta = evt.wheelDelta/120;
+                delta = evt.wheelDelta / 120;
             } else if (evt.detail) {
-                delta = -evt.detail/3;
+                delta = -evt.detail / 3;
             }
 
             // either scroll or zoom
@@ -509,10 +509,9 @@
                     // call zoom on the timeline so we could zoom multiple bands if desired
                     this._timeline.zoom(zoomIn, loc.x, loc.y, innerFrame);
                 }
-            }
-            else if (mouseWheel === 'scroll') {
+            } else if (mouseWheel === 'scroll') {
                 var move_amt = 50 * (delta < 0 ? -1 : 1);
-            this._moveEther(move_amt);
+                this._moveEther(move_amt);
             }
         }
 
@@ -539,20 +538,20 @@
     Timeline._Band.prototype._onKeyDown = function(keyboardInput, evt) {
         if (!this._dragging) {
             switch (evt.keyCode) {
-            case 27: // ESC
-                break;
-            case 37: // left arrow
-            case 38: // up arrow
-                this._scrollSpeed = Math.min(50, Math.abs(this._scrollSpeed * 1.05));
-                this._moveEther(this._scrollSpeed);
-                break;
-            case 39: // right arrow
-            case 40: // down arrow
-                this._scrollSpeed = -Math.min(50, Math.abs(this._scrollSpeed * 1.05));
-                this._moveEther(this._scrollSpeed);
-                break;
-            default:
-                return true;
+                case 27: // ESC
+                    break;
+                case 37: // left arrow
+                case 38: // up arrow
+                    this._scrollSpeed = Math.min(50, Math.abs(this._scrollSpeed * 1.05));
+                    this._moveEther(this._scrollSpeed);
+                    break;
+                case 39: // right arrow
+                case 40: // down arrow
+                    this._scrollSpeed = -Math.min(50, Math.abs(this._scrollSpeed * 1.05));
+                    this._moveEther(this._scrollSpeed);
+                    break;
+                default:
+                    return true;
             }
 
             this.closeBubble();
@@ -566,26 +565,26 @@
     Timeline._Band.prototype._onKeyUp = function(keyboardInput, evt) {
         if (!this._dragging) {
             this._scrollSpeed = this._originalScrollSpeed;
-            
+
             switch (evt.keyCode) {
-            case 35: // end
-                this.setCenterVisibleDate(this._eventSource.getLatestDate());
-                break;
-            case 36: // home
-                this.setCenterVisibleDate(this._eventSource.getEarliestDate());
-                break;
-            case 33: // page up
-                this._autoScroll(this._timeline.getPixelLength());
-                break;
-            case 34: // page down
-                this._autoScroll(-this._timeline.getPixelLength());
-                break;
-            default:
-                return true;
+                case 35: // end
+                    this.setCenterVisibleDate(this._eventSource.getLatestDate());
+                    break;
+                case 36: // home
+                    this.setCenterVisibleDate(this._eventSource.getEarliestDate());
+                    break;
+                case 33: // page up
+                    this._autoScroll(this._timeline.getPixelLength());
+                    break;
+                case 34: // page down
+                    this._autoScroll(-this._timeline.getPixelLength());
+                    break;
+                default:
+                    return true;
             }
-            
+
             this.closeBubble();
-            
+
             SimileAjax.DOM.cancelEvent(evt);
             return false;
         }
@@ -597,10 +596,10 @@
         var a = SimileAjax.Graphics.createAnimation(
             function(abs, diff) {
                 b._moveEther(diff);
-            }, 
-            0, 
-            distance, 
-            1000, 
+            },
+            0,
+            distance,
+            1000,
             f
         );
         a.run();
@@ -642,7 +641,7 @@
 
     Timeline._Band.prototype.busy = function() {
         // Is this band busy changing other bands?
-        return(this._changing);
+        return (this._changing);
     };
 
     Timeline._Band.prototype._fireOnScroll = function() {
@@ -662,12 +661,12 @@
         if (this._syncWithBand) {
             var centerDate = this._syncWithBand.getCenterVisibleDate();
             var centerPixelOffset = this._ether.dateToPixelOffset(centerDate);
-            
+
             this._moveEther(Math.round(this._viewLength / 2 - centerPixelOffset));
-            
+
             if (this._highlight) {
                 this._etherPainter.setHighlight(
-                    this._syncWithBand.getMinVisibleDate(), 
+                    this._syncWithBand.getMinVisibleDate(),
                     this._syncWithBand.getMaxVisibleDate());
             }
         }
@@ -685,7 +684,7 @@
         if (this._syncWithBand) {
             var startDate = this._syncWithBand.getMinVisibleDate();
             var endDate = this._syncWithBand.getMaxVisibleDate();
-            
+
             if (this._highlight) {
                 this._etherPainter.setHighlight(startDate, endDate);
             }

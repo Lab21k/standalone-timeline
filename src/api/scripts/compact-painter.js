@@ -1,9 +1,9 @@
 (function() {
     'use strict';
     /*==================================================
-    *  Original Event Painter
-    *==================================================
-    */
+     *  Original Event Painter
+     *==================================================
+     */
 
     Timeline.CompactEventPainter = function(params) {
         this._params = params;
@@ -784,9 +784,9 @@
         }
 
         /*
-        *  Try to fit the new track on top of the existing tracks, then
-        *  render the various elements.
-        */
+         *  Try to fit the new track on top of the existing tracks, then
+         *  render the various elements.
+         */
         var firstTrack = this._fitTracks(anchorPixel, newTracks);
         var verticalPixelOffset = firstTrack * metrics.trackHeight + metrics.trackOffset;
         var result = {};
