@@ -94,6 +94,56 @@
     };
 
 
+    Timeline.DefaultEventSource.prototype.addEvents = function(events, url) {
+
+        var base = url ? this._getBaseURL(url) : '',
+            added = false,
+            dateTimeFormat = null,
+            parseDateTimeFunction = this._events.getUnit().getParser(dateTimeFormat);
+
+        var self = this;
+
+        events.forEach(function(event) {
+
+            var instant = event.isDuration || (event.durationEvent != null && !event.durationEvent);
+            var evt = new Timeline.DefaultEventSource.Event({
+                id: ("id" in event) ? event.id : undefined,
+                start: parseDateTimeFunction(event.start),
+                end: parseDateTimeFunction(event.end),
+                latestStart: parseDateTimeFunction(event.latestStart),
+                earliestEnd: parseDateTimeFunction(event.earliestEnd),
+                instant: instant,
+                text: event.title,
+                description: event.description,
+                image: self._resolveRelativeURL(event.image, base),
+                link: self._resolveRelativeURL(event.link, base),
+                icon: self._resolveRelativeURL(event.icon, base),
+                color: event.color,
+                textColor: event.textColor,
+                hoverText: event.hoverText,
+                classname: event.classname,
+                tapeImage: event.tapeImage,
+                tapeRepeat: event.tapeRepeat,
+                caption: event.caption,
+                eventID: event.eventID,
+                trackNum: event.trackNum
+            });
+
+            evt._obj = event;
+            evt.getProperty = function(name) {
+                return self._obj[name];
+            };
+
+            self._events.add(evt);
+            added = true;
+        });
+
+        if (added) {
+            this._fire("onAddMany", []);
+        }
+
+    };
+
     Timeline.DefaultEventSource.prototype.loadJSON = function(data, url) {
         var base = this._getBaseURL(url);
         var added = false;
