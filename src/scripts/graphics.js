@@ -32,9 +32,9 @@ SimileAjax.Graphics._createTranslucentImage1 = function(url, verticalAlign) {
 
 SimileAjax.Graphics._createTranslucentImage2 = function(url, verticalAlign) {
     var elmt = document.createElement("img");
-    elmt.style.width = "1px";  // just so that IE will calculate the size property
+    elmt.style.width = "1px"; // just so that IE will calculate the size property
     elmt.style.height = "1px";
-    elmt.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + url +"', sizingMethod='image')";
+    elmt.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + url + "', sizingMethod='image')";
     elmt.style.verticalAlign = (verticalAlign != null) ? verticalAlign : "middle";
     return elmt;
 };
@@ -62,7 +62,7 @@ SimileAjax.Graphics._createTranslucentImageHTML1 = function(url, verticalAlign) 
 SimileAjax.Graphics._createTranslucentImageHTML2 = function(url, verticalAlign) {
     var style =
         "width: 1px; height: 1px; " +
-        "filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + url +"', sizingMethod='image');" +
+        "filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + url + "', sizingMethod='image');" +
         (verticalAlign != null ? " vertical-align: " + verticalAlign + ";" : "");
 
     return "<img src='" + url + "' style=\"" + style + "\" />";
@@ -72,7 +72,7 @@ SimileAjax.Graphics._createTranslucentImageHTML2 = function(url, verticalAlign) 
  * Creates an HTML string for an <code>img</code> tag using the URL given.
  * This is a convenience method that automatically includes the necessary CSS
  * to allow for translucency, even on IE.
- * 
+ *
  * @function
  * @param {String} url the URL to the image
  * @param {String} verticalAlign the CSS value for the image's vertical-align
@@ -104,23 +104,23 @@ SimileAjax.Graphics.setOpacity = function(elmt, opacity) {
  */
 
 SimileAjax.Graphics.bubbleConfig = {
-    containerCSSClass:              "simileAjax-bubble-container",
-    innerContainerCSSClass:         "simileAjax-bubble-innerContainer",
-    contentContainerCSSClass:       "simileAjax-bubble-contentContainer",
-    borderGraphicSize:              50,
-    borderGraphicCSSClassPrefix:    "simileAjax-bubble-border-",
-    arrowGraphicTargetOffset:       33,  // from tip of arrow to the side of the graphic that touches the content of the bubble
-    arrowGraphicLength:             100, // dimension of arrow graphic along the direction that the arrow points
-    arrowGraphicWidth:              49,  // dimension of arrow graphic perpendicular to the direction that the arrow points
-    arrowGraphicCSSClassPrefix:     "simileAjax-bubble-arrow-",
-    closeGraphicCSSClass:           "simileAjax-bubble-close",
-    extraPadding:                   20
+    containerCSSClass: "simileAjax-bubble-container",
+    innerContainerCSSClass: "simileAjax-bubble-innerContainer",
+    contentContainerCSSClass: "simileAjax-bubble-contentContainer",
+    borderGraphicSize: 50,
+    borderGraphicCSSClassPrefix: "simileAjax-bubble-border-",
+    arrowGraphicTargetOffset: 33, // from tip of arrow to the side of the graphic that touches the content of the bubble
+    arrowGraphicLength: 100, // dimension of arrow graphic along the direction that the arrow points
+    arrowGraphicWidth: 49, // dimension of arrow graphic perpendicular to the direction that the arrow points
+    arrowGraphicCSSClassPrefix: "simileAjax-bubble-arrow-",
+    closeGraphicCSSClass: "simileAjax-bubble-close",
+    extraPadding: 20
 };
 
 /**
  * Creates a nice, rounded bubble popup with the given content in a div,
- * page coordinates and a suggested width. The bubble will point to the 
- * location on the page as described by pageX and pageY.  All measurements 
+ * page coordinates and a suggested width. The bubble will point to the
+ * location on the page as described by pageX and pageY.  All measurements
  * should be given in pixels.
  *
  * @param {Element} the content div
@@ -133,7 +133,7 @@ SimileAjax.Graphics.bubbleConfig = {
  *   Default of 0 or null means no maximum
  */
 SimileAjax.Graphics.createBubbleForContentAndPoint = function(
-       div, pageX, pageY, contentWidth, orientation, maxHeight) {
+    div, pageX, pageY, contentWidth, orientation, maxHeight) {
     if (typeof contentWidth != "number") {
         contentWidth = 300;
     }
@@ -153,8 +153,8 @@ SimileAjax.Graphics.createBubbleForContentAndPoint = function(
         var scrollDivW = 0; // width of the possible inner container when we want vertical scrolling
 
         if (maxHeight > 0 && height > maxHeight) {
-          height = maxHeight;
-          scrollDivW = width - 25;
+            height = maxHeight;
+            scrollDivW = width - 25;
         }
 
         var bubble = SimileAjax.Graphics.createBubbleForPoint(pageX, pageY, width, height, orientation);
@@ -233,10 +233,14 @@ SimileAjax.Graphics.createBubbleForPoint = function(pageX, pageY, contentWidth, 
         }
     };
 
-    var bubble = { _closed: false };
+    var bubble = {
+        _closed: false
+    };
     var layer = SimileAjax.WindowManager.pushLayer(close, true, div);
     bubble._div = div;
-    bubble.close = function() { SimileAjax.WindowManager.popLayer(layer); }
+    bubble.close = function() {
+        SimileAjax.WindowManager.popLayer(layer);
+    }
 
     /*
      *  Render border graphics
@@ -291,16 +295,12 @@ SimileAjax.Graphics.createBubbleForPoint = function(pageX, pageY, contentWidth, 
              */
             var left = pageX - Math.round(contentWidth / 2);
             left = pageX < (docWidth / 2) ?
-                Math.max(left, bubbleConfig.extraPadding + bubbleConfig.borderGraphicSize) : 
+                Math.max(left, bubbleConfig.extraPadding + bubbleConfig.borderGraphicSize) :
                 Math.min(left, docWidth - bubbleConfig.extraPadding - bubbleConfig.borderGraphicSize - contentWidth);
 
             if ((orientation && orientation == "top") ||
                 (!orientation &&
-                    (pageY
-                        - bubbleConfig.arrowGraphicTargetOffset
-                        - contentHeight
-                        - bubbleConfig.borderGraphicSize
-                        - bubbleConfig.extraPadding > 0))) {
+                    (pageY - bubbleConfig.arrowGraphicTargetOffset - contentHeight - bubbleConfig.borderGraphicSize - bubbleConfig.extraPadding > 0))) {
 
                 /*
                  *  Position bubble above the target point.
@@ -313,11 +313,7 @@ SimileAjax.Graphics.createBubbleForPoint = function(pageX, pageY, contentWidth, 
 
             } else if ((orientation && orientation == "bottom") ||
                 (!orientation &&
-                    (pageY
-                        + bubbleConfig.arrowGraphicTargetOffset
-                        + contentHeight 
-                        + bubbleConfig.borderGraphicSize 
-                        + bubbleConfig.extraPadding < docHeight))) {
+                    (pageY + bubbleConfig.arrowGraphicTargetOffset + contentHeight + bubbleConfig.borderGraphicSize + bubbleConfig.extraPadding < docHeight))) {
 
                 /*
                  *  Position bubble below the target point.
@@ -332,16 +328,12 @@ SimileAjax.Graphics.createBubbleForPoint = function(pageX, pageY, contentWidth, 
 
         var top = pageY - Math.round(contentHeight / 2);
         top = pageY < (docHeight / 2) ?
-            Math.max(top, bubbleConfig.extraPadding + bubbleConfig.borderGraphicSize) : 
+            Math.max(top, bubbleConfig.extraPadding + bubbleConfig.borderGraphicSize) :
             Math.min(top, docHeight - bubbleConfig.extraPadding - bubbleConfig.borderGraphicSize - contentHeight);
 
         if ((orientation && orientation == "left") ||
             (!orientation &&
-                (pageX
-                    - bubbleConfig.arrowGraphicTargetOffset
-                    - contentWidth
-                    - bubbleConfig.borderGraphicSize
-                    - bubbleConfig.extraPadding > 0))) {
+                (pageX - bubbleConfig.arrowGraphicTargetOffset - contentWidth - bubbleConfig.borderGraphicSize - bubbleConfig.extraPadding > 0))) {
 
             /*
              *  Position bubble left of the target point.
@@ -368,16 +360,19 @@ SimileAjax.Graphics.createBubbleForPoint = function(pageX, pageY, contentWidth, 
 
 SimileAjax.Graphics.getWindowDimensions = function() {
     if (typeof window.innerHeight == 'number') {
-        return { w:window.innerWidth, h:window.innerHeight }; // Non-IE
+        return {
+            w: window.innerWidth,
+            h: window.innerHeight
+        }; // Non-IE
     } else if (document.documentElement && document.documentElement.clientHeight) {
         return { // IE6+, in "standards compliant mode"
-            w:document.documentElement.clientWidth,
-            h:document.documentElement.clientHeight
+            w: document.documentElement.clientWidth,
+            h: document.documentElement.clientHeight
         };
     } else if (document.body && document.body.clientHeight) {
         return { // IE 4 compatible
-            w:document.body.clientWidth,
-            h:document.body.clientHeight
+            w: document.body.clientWidth,
+            h: document.body.clientHeight
         };
     }
 };
@@ -439,8 +434,8 @@ SimileAjax.Graphics.createMessageBubble = function(doc) {
     }
 
     return {
-        containerDiv:   containerDiv,
-        contentDiv:     contentDiv
+        containerDiv: containerDiv,
+        contentDiv: contentDiv
     };
 };
 
@@ -486,7 +481,9 @@ SimileAjax.Graphics._Animation = function(f, from, to, duration, cont) {
  */
 SimileAjax.Graphics._Animation.prototype.run = function() {
     var a = this;
-    window.setTimeout(function() { a.step(); }, 50);
+    window.setTimeout(function() {
+        a.step();
+    }, 50);
 };
 
 /**
@@ -523,10 +520,10 @@ SimileAjax.Graphics._Animation.prototype.step = function() {
 
 /**
  * Creates a button and textarea for displaying structured data and copying it
- * to the clipboard.  The data is dynamically generated by the given 
+ * to the clipboard.  The data is dynamically generated by the given
  * createDataFunction parameter.
  *
- * @param {String} image an image URL to use as the background for the 
+ * @param {String} image an image URL to use as the background for the
  *   generated box
  * @param {Number} width the width in pixels of the generated box
  * @param {Number} height the height in pixels of the generated box
@@ -546,7 +543,7 @@ SimileAjax.Graphics.createStructuredDataCopyButton = function(image, width, heig
     if (SimileAjax.Graphics.pngIsTranslucent) {
         div.style.background = "url(" + image + ") no-repeat";
     } else {
-        div.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + image +"', sizingMethod='image')";
+        div.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + image + "', sizingMethod='image')";
     }
 
     var style;
@@ -592,7 +589,7 @@ SimileAjax.Graphics.getWidthHeight = function(el) {
         h = Math.ceil(rect.bottom - rect.top);
     }
     return {
-        width:  w,
+        width: w,
         height: h
     };
 };
@@ -639,4 +636,3 @@ SimileAjax.Graphics._FontRenderingContext.prototype.computeSize = function(text,
 SimileAjax.Graphics._FontRenderingContext.prototype.getLineHeight = function() {
     return this._lineHeight;
 };
-

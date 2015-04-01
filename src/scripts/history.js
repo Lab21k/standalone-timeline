@@ -13,26 +13,26 @@
  *      label:   a short, user-friendly string describing the action
  *      uiLayer: the UI layer on which the action takes place
  *
- *  By default, the history keeps track of upto 10 actions. You can 
- *  configure this behavior by setting 
+ *  By default, the history keeps track of upto 10 actions. You can
+ *  configure this behavior by setting
  *      SimileAjax.History.maxHistoryLength
  *  to a different number.
  *
- *  An iframe is inserted into the document's body element to track 
+ *  An iframe is inserted into the document's body element to track
  *  onload events.
  *======================================================================
  */
- 
+
 SimileAjax.History = {
-    maxHistoryLength:       10,
-    historyFile:            "__history__.html",
-    enabled:               true,
-    _initialized:           false,
-    _listeners:             new SimileAjax.ListenerQueue(),
-    _actions:               [],
-    _baseIndex:             0,
-    _currentIndex:          0,
-    _plainDocumentTitle:    document.title
+    maxHistoryLength: 10,
+    historyFile: "__history__.html",
+    enabled: true,
+    _initialized: false,
+    _listeners: new SimileAjax.ListenerQueue(),
+    _actions: [],
+    _baseIndex: 0,
+    _currentIndex: 0,
+    _plainDocumentTitle: document.title
 };
 
 SimileAjax.History.formatHistoryEntryTitle = function(actionLabel) {
@@ -75,12 +75,12 @@ SimileAjax.History.removeListener = function(listener) {
 
 SimileAjax.History.addAction = function(action) {
     SimileAjax.History.initialize();
-    SimileAjax.History._listeners.fire("onBeforePerform", [ action ]);
+    SimileAjax.History._listeners.fire("onBeforePerform", [action]);
 
     window.setTimeout(function() {
         try {
             action.perform();
-            SimileAjax.History._listeners.fire("onAfterPerform", [ action ]);
+            SimileAjax.History._listeners.fire("onAfterPerform", [action]);
             if (SimileAjax.History.enabled) {
                 SimileAjax.History._actions = SimileAjax.History._actions.slice(
                     0, SimileAjax.History._currentIndex - SimileAjax.History._baseIndex);
@@ -96,7 +96,7 @@ SimileAjax.History.addAction = function(action) {
                 }
 
                 try {
-                    SimileAjax.History._iframe.contentWindow.location.search = 
+                    SimileAjax.History._iframe.contentWindow.location.search =
                         "?" + SimileAjax.History._currentIndex;
                 } catch (e) {
                     /*
@@ -115,11 +115,11 @@ SimileAjax.History.addAction = function(action) {
 
 SimileAjax.History.addLengthyAction = function(perform, undo, label) {
     SimileAjax.History.addAction({
-        perform:    perform,
-        undo:       undo,
-        label:      label,
-        uiLayer:    SimileAjax.WindowManager.getBaseLayer(),
-        lengthy:    true
+        perform: perform,
+        undo: undo,
+        label: label,
+        uiLayer: SimileAjax.WindowManager.getBaseLayer(),
+        lengthy: true
     });
 };
 
@@ -143,8 +143,8 @@ SimileAjax.History._handleIFrameOnLoad = function() {
         if (c < SimileAjax.History._currentIndex) { // need to undo
             SimileAjax.History._listeners.fire("onBeforeUndoSeveral", []);
             window.setTimeout(function() {
-                while (SimileAjax.History._currentIndex > c && 
-                       SimileAjax.History._currentIndex > SimileAjax.History._baseIndex) {
+                while (SimileAjax.History._currentIndex > c &&
+                    SimileAjax.History._currentIndex > SimileAjax.History._baseIndex) {
 
                     SimileAjax.History._currentIndex--;
 
@@ -163,8 +163,8 @@ SimileAjax.History._handleIFrameOnLoad = function() {
         } else if (c > SimileAjax.History._currentIndex) { // need to redo
             SimileAjax.History._listeners.fire("onBeforeRedoSeveral", []);
             window.setTimeout(function() {
-                while (SimileAjax.History._currentIndex < c && 
-                       SimileAjax.History._currentIndex - SimileAjax.History._baseIndex < SimileAjax.History._actions.length) {
+                while (SimileAjax.History._currentIndex < c &&
+                    SimileAjax.History._currentIndex - SimileAjax.History._baseIndex < SimileAjax.History._actions.length) {
 
                     var action = SimileAjax.History._actions[SimileAjax.History._currentIndex - SimileAjax.History._baseIndex];
 

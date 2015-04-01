@@ -18,7 +18,7 @@ SimileAjax.NativeDateUnit.getParser = function(format) {
         format = format.toLowerCase();
     }
     return (format == "iso8601" || format == "iso 8601") ?
-        SimileAjax.DateTime.parseIso8601DateTime : 
+        SimileAjax.DateTime.parseIso8601DateTime :
         SimileAjax.DateTime.parseGregorianDateTime;
 };
 
@@ -46,7 +46,7 @@ SimileAjax.NativeDateUnit.compare = function(v1, v2) {
     } else {
         n2 = Number(v2);
     }
-    
+
     return n1 - n2;
 };
 
@@ -61,4 +61,3 @@ SimileAjax.NativeDateUnit.later = function(v1, v2) {
 SimileAjax.NativeDateUnit.change = function(v, n) {
     return new Date(v.getTime() + n);
 };
-

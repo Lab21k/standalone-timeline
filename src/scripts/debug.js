@@ -45,7 +45,7 @@ SimileAjax.Debug.exception = function(e, msg) {
     var f, params = SimileAjax.parseURLParameters();
     if (params.errors == "throw" || SimileAjax.params.errors == "throw") {
         f = function(e2, msg2) {
-            throw(e2); // do not hide from browser's native debugging features
+            throw (e2); // do not hide from browser's native debugging features
         };
     } else if ("console" in window && "error" in window.console) { // FireBug installed
         f = function(e2, msg2) {
@@ -54,14 +54,14 @@ SimileAjax.Debug.exception = function(e, msg) {
             } else {
                 console.error(e2);
             }
-            throw(e2); // do not hide from browser's native debugging features
+            throw (e2); // do not hide from browser's native debugging features
         };
     } else {
         f = function(e2, msg2) {
             if (!SimileAjax.Debug.silent) {
                 alert("Caught exception: " + msg2 + "\n\nDetails: " + ("description" in e2 ? e2.description : e2));
             }
-            throw(e2); // do not hide from browser's native debugging features
+            throw (e2); // do not hide from browser's native debugging features
         };
     }
     SimileAjax.Debug.exception = f;

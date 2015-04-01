@@ -38,11 +38,10 @@ SimileAjax.ListenerQueue.prototype.fire = function(handlerName, args) {
         } else if (this._wildcardHandlerName != null &&
             this._wildcardHandlerName in listener) {
             try {
-                listener[this._wildcardHandlerName].apply(listener, [ handlerName ]);
+                listener[this._wildcardHandlerName].apply(listener, [handlerName]);
             } catch (e) {
                 SimileAjax.Debug.exception("Error firing event of name " + handlerName + " to wildcard handler", e);
             }
         }
     }
 };
-
