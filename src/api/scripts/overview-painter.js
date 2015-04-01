@@ -57,7 +57,7 @@
 
     Timeline.OverviewEventPainter.prototype.paint = function() {
         var eventSource = this._band.getEventSource();
-        if (eventSource === null) {
+        if (eventSource === null || eventSource === undefined) {
             return;
         }
 
